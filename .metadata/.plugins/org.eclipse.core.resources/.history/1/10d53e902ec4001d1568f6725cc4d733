@@ -1,0 +1,108 @@
+package View;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+public class TelaPrincipal {
+
+	private JFrame frmTelaPrincipal;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaPrincipal window = new TelaPrincipal();
+					window.frmTelaPrincipal.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TelaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmTelaPrincipal = new JFrame();
+		frmTelaPrincipal.setTitle("Tela Principal");
+		frmTelaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
+		frmTelaPrincipal.setResizable(false);
+		frmTelaPrincipal.setBounds(100, 100, 450, 300);
+		frmTelaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTelaPrincipal.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		frmTelaPrincipal.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 434, 22);
+		panel.add(menuBar);
+		
+		JMenu mnProduto = new JMenu("Produto");
+		menuBar.add(mnProduto);
+		
+		JMenuItem mntmCadProduto = new JMenuItem("Cadastrar");
+		mnProduto.add(mntmCadProduto);
+		
+		JMenuItem mntmConProduto = new JMenuItem("Consultar");
+		mnProduto.add(mntmConProduto);
+		
+		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
+		mnProduto.add(mntmAltProduto);
+		
+		JMenuItem mntmExcProduto = new JMenuItem("Excluir");
+		mnProduto.add(mntmExcProduto);
+		
+		JMenu mnCliente = new JMenu("Cliente");
+		menuBar.add(mnCliente);
+		
+		JMenuItem mntmCadCliente = new JMenuItem("Cadastrar");
+		mnCliente.add(mntmCadCliente);
+		
+		JMenuItem mntmConCliente = new JMenuItem("Consultar");
+		mnCliente.add(mntmConCliente);
+		
+		JMenuItem mntmAltCliente = new JMenuItem("Alterar");
+		mnCliente.add(mntmAltCliente);
+		
+		JMenuItem mntmExcCliente = new JMenuItem("Excluir");
+		mnCliente.add(mntmExcCliente);
+		
+		JMenu mnFuncionarios = new JMenu("Funcionários");
+		menuBar.add(mnFuncionarios);
+		
+		JMenuItem mntmCadFuncionario = new JMenuItem("Cadastrar");
+		mnFuncionarios.add(mntmCadFuncionario);
+		
+		JMenuItem mntmConFuncionario = new JMenuItem("Consultar");
+		mnFuncionarios.add(mntmConFuncionario);
+		
+		JMenuItem mntmAltFuncionario = new JMenuItem("Alterar");
+		mnFuncionarios.add(mntmAltFuncionario);
+		
+		JMenuItem mntmExcluir_1_1 = new JMenuItem("Excluir");
+		mnFuncionarios.add(mntmExcluir_1_1);
+		
+		JMenu mnSobre = new JMenu("Sobre");
+		menuBar.add(mnSobre);
+	}
+}

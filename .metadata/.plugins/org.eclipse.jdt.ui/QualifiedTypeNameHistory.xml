@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.lang.System.Logger"/>
+    <fullyQualifiedTypeName name="java.util.logging.Logger"/>
+    <fullyQualifiedTypeName name="java.util.logging.Level"/>
+    <fullyQualifiedTypeName name="java.lang.Float"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="Connection.ConnectionFactoryMySQL"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="DAO.ProdutoDAO"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.Result"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.PreparableStatement"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="Dominio.Produto"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="Dominio.Login"/>
+    <fullyQualifiedTypeName name="javax.swing.JButton"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.awt.Window"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="View.TelaPrincipal"/>
+    <fullyQualifiedTypeName name="DAO.LoginDAO"/>
+</qualifiedTypeNameHistroy>

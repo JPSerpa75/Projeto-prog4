@@ -1,0 +1,17 @@
+package DAO;
+
+import javax.swing.JOptionPane;
+
+import Dominio.Login;
+
+public class LoginDAO {
+	
+	public void autenticar(Login l) {
+		if(l.getUser().equals("admin") && l.getPass().equals("admin")) {
+			JOptionPane.showMessageDialog(btnLogin, "Autenticação bem sucedida!");
+		}else {
+			JOptionPane.showMessageDialog(btnLogin, "Erro na autenticação!");
+		}
+	}
+
+}
