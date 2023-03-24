@@ -1,0 +1,61 @@
+package View;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+public class TelaConsultaProduto {
+
+	private JFrame frmConsultaProduto;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaConsultaProduto window = new TelaConsultaProduto();
+					window.frmConsultaProduto.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TelaConsultaProduto() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmConsultaProduto = new JFrame();
+		frmConsultaProduto.setTitle("Consulta produto");
+		frmConsultaProduto.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaProduto.class.getResource("/images/logo.jpg")));
+		frmConsultaProduto.setBounds(100, 100, 450, 300);
+		frmConsultaProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultaProduto.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		frmConsultaProduto.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Consulta Produto");
+		lblNewLabel.setBounds(168, 11, 94, 14);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Descrição: ");
+		lblNewLabel_1.setBounds(26, 31, 46, 14);
+		panel.add(lblNewLabel_1);
+	}
+}

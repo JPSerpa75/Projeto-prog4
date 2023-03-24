@@ -1,0 +1,78 @@
+package View;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+
+public class TelaCadastroCliente {
+
+	private JFrame frmCadastroCliente;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroCliente window = new TelaCadastroCliente();
+					window.frmCadastroCliente.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TelaCadastroCliente() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmCadastroCliente = new JFrame();
+		frmCadastroCliente.setTitle("Cadastro cliente");
+		frmCadastroCliente.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroCliente.class.getResource("/images/logo.jpg")));
+		frmCadastroCliente.setBounds(100, 100, 450, 300);
+		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastroCliente.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		frmCadastroCliente.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Cadastro cliente");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 23, 434, 14);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nome:");
+		lblNewLabel_1.setBounds(25, 65, 46, 14);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("CPF:");
+		lblNewLabel_2.setBounds(25, 129, 46, 14);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Endereco:");
+		lblNewLabel_3.setBounds(144, 86, 115, 14);
+		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Telefone");
+		lblNewLabel_4.setBounds(178, 146, 46, 14);
+		panel.add(lblNewLabel_4);
+	}
+
+}

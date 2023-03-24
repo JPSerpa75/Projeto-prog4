@@ -1,0 +1,147 @@
+package View;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JDesktopPane;
+
+public class TelaPrincipal extends JFrame {
+
+	private JFrame frmTelaPrincipal;
+
+	public JFrame getFrmTelaPrincipal() {
+		return frmTelaPrincipal;
+	}
+
+	public void setFrmTelaPrincipal(JFrame frmTelaPrincipal) {
+		this.frmTelaPrincipal = frmTelaPrincipal;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaPrincipal window = new TelaPrincipal();
+					window.frmTelaPrincipal.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TelaPrincipal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmTelaPrincipal = new JFrame();
+		frmTelaPrincipal.setTitle("Tela Principal");
+		frmTelaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
+		frmTelaPrincipal.setResizable(false);
+		frmTelaPrincipal.setBounds(100, 100, 450, 300);
+		frmTelaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTelaPrincipal.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		frmTelaPrincipal.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 434, 22);
+		panel.add(menuBar);
+		
+		JMenu mnProduto = new JMenu("Produto");
+		menuBar.add(mnProduto);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(433, 258, -431, -236);
+		panel.add(desktopPane);
+		
+		JMenuItem mntmCadProduto = new JMenuItem("Cadastrar");
+		mntmCadProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TelaCadastroProduto cp = new TelaCadastroProduto();
+				//cp.getFrmTelaDeCadastro().setVisible(true);
+				TelaCadastroProdutoMDI tc = new TelaCadastroProdutoMDI();
+				desktopPane.setVisible(true);
+				desktopPane.add(tc);
+				frmTelaPrincipal.add(desktopPane);
+			}
+		});
+		mnProduto.add(mntmCadProduto);
+		
+		JMenuItem mntmConProduto = new JMenuItem("Consultar");
+		mnProduto.add(mntmConProduto);
+		
+		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
+		mnProduto.add(mntmAltProduto);
+		
+		JMenuItem mntmExcProduto = new JMenuItem("Excluir");
+		mnProduto.add(mntmExcProduto);
+		
+		JMenu mnCliente = new JMenu("Cliente");
+		menuBar.add(mnCliente);
+		
+		JMenuItem mntmCadCliente = new JMenuItem("Cadastrar");
+		mnCliente.add(mntmCadCliente);
+		
+		JMenuItem mntmConCliente = new JMenuItem("Consultar");
+		mnCliente.add(mntmConCliente);
+		
+		JMenuItem mntmAltCliente = new JMenuItem("Alterar");
+		mnCliente.add(mntmAltCliente);
+		
+		JMenuItem mntmExcCliente = new JMenuItem("Excluir");
+		mnCliente.add(mntmExcCliente);
+		
+		JMenu mnFuncionarios = new JMenu("Funcionários");
+		menuBar.add(mnFuncionarios);
+		
+		JMenuItem mntmCadFuncionario = new JMenuItem("Cadastrar");
+		mnFuncionarios.add(mntmCadFuncionario);
+		
+		JMenuItem mntmConFuncionario = new JMenuItem("Consultar");
+		mnFuncionarios.add(mntmConFuncionario);
+		
+		JMenuItem mntmAltFuncionario = new JMenuItem("Alterar");
+		mnFuncionarios.add(mntmAltFuncionario);
+		
+		JMenuItem mntmExcFuncionario = new JMenuItem("Excluir");
+		mnFuncionarios.add(mntmExcFuncionario);
+		
+		JMenu mnAbout = new JMenu("Sobre");
+		mnAbout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(frmTelaPrincipal, "Desenvolvido por João Pedro Serpa \nSoftware de gerenciamento génerico \nVersão 1.0");
+			}
+		});
+		menuBar.add(mnAbout);
+		
+		
+		
+
+	}
+}

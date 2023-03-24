@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JDesktopPane;
 
 public class TelaPrincipal extends JFrame {
 
@@ -74,16 +75,30 @@ public class TelaPrincipal extends JFrame {
 		JMenu mnProduto = new JMenu("Produto");
 		menuBar.add(mnProduto);
 		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(433, 258, -431, -236);
+		panel.add(desktopPane);
+		
 		JMenuItem mntmCadProduto = new JMenuItem("Cadastrar");
 		mntmCadProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastroProduto cp = new CadastroProduto();
+				TelaCadastroProduto cp = new TelaCadastroProduto();
 				cp.getFrmTelaDeCadastro().setVisible(true);
+//				TelaCadastroProdutoMDI tc = new TelaCadastroProdutoMDI();
+//				desktopPane.setVisible(true);
+//				desktopPane.add(tc);
+//				frmTelaPrincipal.add(desktopPane);
 			}
 		});
 		mnProduto.add(mntmCadProduto);
 		
 		JMenuItem mntmConProduto = new JMenuItem("Consultar");
+		mntmConProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaProduto tc = new TelaConsultaProduto();
+				tc.getFrmConsultaProduto().setVisible(true);
+			}
+		});
 		mnProduto.add(mntmConProduto);
 		
 		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
@@ -96,6 +111,13 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnCliente);
 		
 		JMenuItem mntmCadCliente = new JMenuItem("Cadastrar");
+		mntmCadCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroCliente tc = new TelaCadastroCliente();
+				tc.getFrmCadastroCliente().setVisible(true);
+				
+			}
+		});
 		mnCliente.add(mntmCadCliente);
 		
 		JMenuItem mntmConCliente = new JMenuItem("Consultar");
@@ -130,6 +152,8 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		menuBar.add(mnAbout);
+		
+		
 		
 
 	}

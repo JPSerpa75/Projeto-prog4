@@ -1,0 +1,116 @@
+package View;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+
+public class TelaConsultaProduto {
+
+	private JFrame frmConsultaProduto;
+	private JTextField txtDesc;
+	private JTable tblConsulta;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaConsultaProduto window = new TelaConsultaProduto();
+					window.frmConsultaProduto.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public TelaConsultaProduto() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmConsultaProduto = new JFrame();
+		frmConsultaProduto.setTitle("Consulta produto");
+		frmConsultaProduto.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaProduto.class.getResource("/images/logo.jpg")));
+		frmConsultaProduto.setBounds(100, 100, 450, 300);
+		frmConsultaProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultaProduto.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		frmConsultaProduto.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Consulta Produto");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setBounds(10, 11, 414, 22);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Descrição: ");
+		lblNewLabel_1.setBounds(30, 44, 68, 14);
+		panel.add(lblNewLabel_1);
+		
+		txtDesc = new JTextField();
+		txtDesc.setBounds(30, 66, 370, 23);
+		panel.add(txtDesc);
+		txtDesc.setColumns(10);
+		
+		JButton btnBuscaDescricao = new JButton("Filtrar");
+		btnBuscaDescricao.setBounds(311, 100, 89, 23);
+		panel.add(btnBuscaDescricao);
+		
+		JButton btnMostrarTodos = new JButton("Mostrar todos");
+		btnMostrarTodos.setBounds(184, 100, 117, 23);
+		panel.add(btnMostrarTodos);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(30, 134, 370, 116);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		
+		JScrollPane scrollpane = new JScrollPane();
+		scrollpane.setBounds(0, 112, 370, -112);
+		panel_1.add(scrollpane);
+		tblConsulta = new JTable();
+		DefaultTableModel modelo = new DefaultTableModel();
+		modelo.addColumn("Descrição");
+		modelo.addColumn("Código de barras");
+		modelo.addColumn("Custo");
+		modelo.addColumn("Venda");
+		tblConsulta.setModel(modelo);
+		scrollpane.setViewportView(tblConsulta);
+
+//		tblConsulta.setModel(new DefaultTableModel(
+//			new Object[][] {
+//				{null, null, null, null},
+//			},
+//			new String[] {
+//				"Custo", "C\u00F3digo de barras", "Descri\u00E7\u00E3o", "Venda"
+//			}
+//		));
+//		tblConsulta.getColumnModel().getColumn(1).setPreferredWidth(103);
+//		tblConsulta.setBounds(0, 112, 370, -112);
+		panel_1.add(tblConsulta);
+	}
+}

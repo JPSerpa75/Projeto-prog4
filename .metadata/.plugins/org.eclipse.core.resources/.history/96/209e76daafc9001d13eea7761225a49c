@@ -1,0 +1,13 @@
+package Dominio;
+
+
+public class Cliente {
+
+	private Long idCliente;
+    private String nome; 
+    private String cpf;
+    private String endereco; 
+    private String telefone;
+    private String email;
+	
+}
