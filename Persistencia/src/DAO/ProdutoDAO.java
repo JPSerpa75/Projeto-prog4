@@ -68,7 +68,7 @@ public class ProdutoDAO {
 	
 	
 	//Método consultar por descrição
-	public ArrayList<Produto> ConsultarPorDescricao(String descricao){
+	public ArrayList<Produto> ConsultarPorDescricao(String descricao, JFrame j){
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM produto WHERE descricao LIKE '%"+ descricao +"%'";
@@ -87,7 +87,7 @@ public class ProdutoDAO {
 				produtos.add(p);
 			}
 		}catch(SQLException e) {
-			System.out.println("Falha ao consultar dados, erro: " + e.getMessage());
+			JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
 		}
 		
 		return produtos;
@@ -95,23 +95,29 @@ public class ProdutoDAO {
 	}
 	
 	//Operação de delete (exclusão)
-	public void delete(String codBarras) {
+	public void delete(String codBarras, JFrame j) {
 		PreparedStatement stmt = null;
 		String sql = "DELETE FROM produto WHERE codBarras = ?";
 		try {
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, codBarras);
-			stmt.executeUpdate();
-			JOptionPane.showMessageDialog(null, "Dado excluido com sucesso!");
+			int confirma = JOptionPane.showConfirmDialog(j, "Confirma a exclusão?", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+			if(confirma==0) {
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, codBarras);
+				stmt.executeUpdate();
+				JOptionPane.showMessageDialog(j, "Dado excluido com sucesso!");
+			}else {
+				JOptionPane.showMessageDialog(j, "Operação cancelada!");
+			}
+
 			
 			
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e.getMessage() + " codigo lido: " + codBarras);
+			JOptionPane.showMessageDialog(j, "Erro ao excluir: " + e.getMessage() + " codigo lido: " + codBarras);
 		}
 	}
 	
 	//Método de update
-	public void update(Produto p) {
+	public void update(Produto p, JFrame j) {
 		PreparedStatement stmt;
 		String sql = "UPDATE produto SET descricao = ?, codBarras = ? , custo = ?, venda = ? WHERE idProduto=?";
 		try {
@@ -123,9 +129,9 @@ public class ProdutoDAO {
 			stmt.setLong(5, p.getIdProduto());
 			
 			stmt.executeUpdate();
-			JOptionPane.showMessageDialog(null, "Dado atualizado com sucesso!");
+			JOptionPane.showMessageDialog(j, "Dado atualizado com sucesso!");
 		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao atualizar dado: " + e.getMessage());
+			JOptionPane.showMessageDialog(j, "Erro ao atualizar dado: " + e.getMessage());
 		}
 		
 	}

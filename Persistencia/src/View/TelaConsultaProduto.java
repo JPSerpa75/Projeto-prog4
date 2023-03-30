@@ -61,6 +61,27 @@ public class TelaConsultaProduto {
 		initialize();
 	}
 
+	private void atualizaBusca() {
+		ProdutoDAO dao = new ProdutoDAO();
+		String desc = txtDesc.getText();
+		DefaultTableModel tableModel = (DefaultTableModel) table_1.getModel();
+		tableModel.setNumRows(0);
+		for(Produto p:dao.ConsultarPorDescricao(desc, frmConsultaProduto)) {
+			tableModel.addRow(new Object[] {
+					p.getIdProduto(),
+					p.getDescricao(),
+					p.getCodBarras(),
+					p.getCusto(),
+					p.getVenda()
+			});
+		}
+		
+		if(tableModel.getRowCount()==0) {
+			JOptionPane.showMessageDialog(frmConsultaProduto, "Nenhum produto foi encontrado!");
+			txtDesc.setText("");
+		}
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -85,66 +106,25 @@ public class TelaConsultaProduto {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descrição: ");
-		lblNewLabel_1.setBounds(30, 44, 68, 14);
+		lblNewLabel_1.setBounds(30, 33, 68, 14);
 		panel.add(lblNewLabel_1);
 		
 		txtDesc = new JTextField();
-		txtDesc.setBounds(30, 66, 370, 23);
+		txtDesc.setBounds(30, 58, 370, 23);
 		panel.add(txtDesc);
 		txtDesc.setColumns(10);
 		
 		JButton btnBuscaDescricao = new JButton("Filtrar");
 		btnBuscaDescricao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProdutoDAO dao = new ProdutoDAO();
-				String desc = txtDesc.getText();
-				DefaultTableModel tableModel = (DefaultTableModel) table_1.getModel();
-				tableModel.setNumRows(0);
-				for(Produto p:dao.ConsultarPorDescricao(desc)) {
-					tableModel.addRow(new Object[] {
-							p.getDescricao(),
-							p.getCodBarras(),
-							p.getCusto(),
-							p.getVenda()
-					});
-				}
-				
-				if(tableModel.getRowCount()==0) {
-					JOptionPane.showMessageDialog(frmConsultaProduto, "Nenhum produto foi encontrado!");
-					txtDesc.setText("");
-				}
-				
-				
+				atualizaBusca();
 			}
 		});
-		btnBuscaDescricao.setBounds(296, 100, 89, 23);
+		btnBuscaDescricao.setBounds(311, 92, 89, 23);
 		panel.add(btnBuscaDescricao);
 		
-		JButton btnMostrarTodos = new JButton("Mostrar todos");
-		btnMostrarTodos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ProdutoDAO dao = new ProdutoDAO();
-				DefaultTableModel tabelaModelo = (DefaultTableModel) table_1.getModel();
-				tabelaModelo.setNumRows(0);
-				for(Produto p: dao.Read() ) {
-					tabelaModelo.addRow(new Object[] {
-							p.getDescricao(),
-							p.getCodBarras(),
-							p.getCusto(),
-							p.getVenda()
-					});
-				}
-				if(tabelaModelo.getRowCount()==0) {
-					JOptionPane.showMessageDialog(frmConsultaProduto, "Nenhum produto foi cadastrado!");
-				}
-				
-			}
-		});
-		btnMostrarTodos.setBounds(184, 100, 117, 23);
-		panel.add(btnMostrarTodos);
-		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(30, 159, 370, 91);
+		panel_1.setBounds(30, 126, 370, 91);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -157,10 +137,44 @@ public class TelaConsultaProduto {
 			new Object[][] {
 			},
 			new String[] {
-				"Descri\u00E7\u00E3o", "C\u00F3digo de barras", "Custo", "Venda"
+				"Id", "Descri\u00E7\u00E3o", "C\u00F3digo de barras", "Custo", "Venda"
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
 		table_1.setAutoCreateRowSorter(true);
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 1);
+				ProdutoDAO dao = new ProdutoDAO();
+				dao.delete(codBarras, frmConsultaProduto);
+				atualizaBusca();
+				
+			}
+		});
+		btnExcluir.setBounds(311, 228, 89, 23);
+		panel.add(btnExcluir);
+		
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Long id = (Long) table_1.getValueAt(table_1.getSelectedRow(), 0);
+				String descricao = (String) table_1.getValueAt(table_1.getSelectedRow(), 1);
+				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 2);
+				Float custo = (Float) table_1.getValueAt(table_1.getSelectedRow(), 3);
+				Float venda = (Float) table_1.getValueAt(table_1.getSelectedRow(), 4);
+				TelaAlterarProduto ta = new TelaAlterarProduto();
+				ta.setTxtId(id.toString());
+				ta.setTxtDescricao(descricao);
+				ta.setTxtCodbarras(codBarras);
+				ta.setTxtCusto(custo.toString());
+				ta.setTxtVenda(venda.toString());
+				ta.getFrmTelaDeCadastro().setVisible(true);
+				atualizaBusca();
+			}
+		});
+		btnAlterar.setBounds(210, 228, 89, 23);
+		panel.add(btnAlterar);
 	}
 }

@@ -2,6 +2,8 @@ package Principal;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import DAO.ProdutoDAO;
 import Dominio.Produto;
 
@@ -32,16 +34,16 @@ public class Principal {
 			System.out.println("Venda: " + pd.getVenda());
 		}		
 		
-		produtos = dao.ConsultarPorDescricao("es");
-		for(Produto pd: produtos) {
-			System.out.println("----------------------------------");
-//			System.out.println("Posição do ArrayList: " + produtos.indexOf(pd));
-			System.out.println("IdProduto: " + pd.getIdProduto());
-			System.out.println("Descricao: " + pd.getDescricao());
-			System.out.println("CodBarras: " + pd.getCodBarras());
-			System.out.println("Custo: " + pd.getCusto());
-			System.out.println("Venda: " + pd.getVenda());
-		}
+//		produtos = dao.ConsultarPorDescricao("es");
+//		for(Produto pd: produtos) {
+//			System.out.println("----------------------------------");
+////			System.out.println("Posição do ArrayList: " + produtos.indexOf(pd));
+//			System.out.println("IdProduto: " + pd.getIdProduto());
+//			System.out.println("Descricao: " + pd.getDescricao());
+//			System.out.println("CodBarras: " + pd.getCodBarras());
+//			System.out.println("Custo: " + pd.getCusto());
+//			System.out.println("Venda: " + pd.getVenda());
+//		}
 		
 		//dao.delete(p.getCodBarras());
 		
@@ -52,7 +54,7 @@ public class Principal {
 		prod.setCusto((float) 20.5);
 		prod.setVenda((float) 40);
 		
-		dao.update(prod);
+//		dao.update(prod);
 		
 	}
 
