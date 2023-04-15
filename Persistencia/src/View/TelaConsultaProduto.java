@@ -146,11 +146,10 @@ public class TelaConsultaProduto {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 1);
+				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 2);
 				ProdutoDAO dao = new ProdutoDAO();
 				dao.delete(codBarras, frmConsultaProduto);
-				atualizaBusca();
-				
+				atualizaBusca();	
 			}
 		});
 		btnExcluir.setBounds(311, 228, 89, 23);

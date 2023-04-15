@@ -108,9 +108,6 @@ public class ProdutoDAO {
 			}else {
 				JOptionPane.showMessageDialog(j, "Operação cancelada!");
 			}
-
-			
-			
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(j, "Erro ao excluir: " + e.getMessage() + " codigo lido: " + codBarras);
 		}
