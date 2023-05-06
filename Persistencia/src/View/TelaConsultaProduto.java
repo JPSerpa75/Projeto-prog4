@@ -26,6 +26,7 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaConsultaProduto {
 
@@ -95,21 +96,25 @@ public class TelaConsultaProduto {
 		frmConsultaProduto.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(57, 54, 70));
 		panel.setBounds(0, 0, 434, 261);
 		frmConsultaProduto.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Consulta Produto");
+		lblNewLabel.setForeground(new Color(244, 238, 224));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setBounds(10, 11, 414, 22);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Descrição: ");
+		lblNewLabel_1.setForeground(new Color(244, 238, 224));
 		lblNewLabel_1.setBounds(30, 33, 68, 14);
 		panel.add(lblNewLabel_1);
 		
 		txtDesc = new JTextField();
+		txtDesc.setBackground(new Color(244, 238, 224));
 		txtDesc.setBounds(30, 58, 370, 23);
 		panel.add(txtDesc);
 		txtDesc.setColumns(10);
