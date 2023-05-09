@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
+import java.awt.Color;
 
 public class TelaPrincipal extends JFrame {
 
@@ -56,7 +57,7 @@ public class TelaPrincipal extends JFrame {
 	 */
 	private void initialize() {
 		frmTelaPrincipal = new JFrame();
-		frmTelaPrincipal.setTitle("Tela Principal");
+		frmTelaPrincipal.setTitle("Home");
 		frmTelaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
 		frmTelaPrincipal.setResizable(false);
 		frmTelaPrincipal.setBounds(100, 100, 450, 300);
@@ -64,15 +65,18 @@ public class TelaPrincipal extends JFrame {
 		frmTelaPrincipal.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(57, 54, 70));
 		panel.setBounds(0, 0, 434, 261);
 		frmTelaPrincipal.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(244, 238, 224));
 		menuBar.setBounds(0, 0, 434, 22);
 		panel.add(menuBar);
 		
 		JMenu mnProduto = new JMenu("Produto");
+		mnProduto.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnProduto);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -80,6 +84,8 @@ public class TelaPrincipal extends JFrame {
 		panel.add(desktopPane);
 		
 		JMenuItem mntmCadProduto = new JMenuItem("Cadastrar");
+		mntmCadProduto.setBackground(new Color(244, 238, 224));
+		mntmCadProduto.setForeground(new Color(57, 54, 70));
 		mntmCadProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroProduto cp = new TelaCadastroProduto();
@@ -93,6 +99,8 @@ public class TelaPrincipal extends JFrame {
 		mnProduto.add(mntmCadProduto);
 		
 		JMenuItem mntmConProduto = new JMenuItem("Consultar");
+		mntmConProduto.setBackground(new Color(244, 238, 224));
+		mntmConProduto.setForeground(new Color(57, 54, 70));
 		mntmConProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaProduto tc = new TelaConsultaProduto();
@@ -102,15 +110,23 @@ public class TelaPrincipal extends JFrame {
 		mnProduto.add(mntmConProduto);
 		
 		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
+		mntmAltProduto.setBackground(new Color(244, 238, 224));
+		mntmAltProduto.setForeground(new Color(57, 54, 70));
 		mnProduto.add(mntmAltProduto);
 		
 		JMenuItem mntmExcProduto = new JMenuItem("Excluir");
+		mntmExcProduto.setBackground(new Color(244, 238, 224));
+		mntmExcProduto.setForeground(new Color(57, 54, 70));
 		mnProduto.add(mntmExcProduto);
 		
 		JMenu mnCliente = new JMenu("Cliente");
+		mnCliente.setBackground(new Color(244, 238, 224));
+		mnCliente.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnCliente);
 		
 		JMenuItem mntmCadCliente = new JMenuItem("Cadastrar");
+		mntmCadCliente.setBackground(new Color(244, 238, 224));
+		mntmCadCliente.setForeground(new Color(57, 54, 70));
 		mntmCadCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroCliente tc = new TelaCadastroCliente();
@@ -121,30 +137,47 @@ public class TelaPrincipal extends JFrame {
 		mnCliente.add(mntmCadCliente);
 		
 		JMenuItem mntmConCliente = new JMenuItem("Consultar");
+		mntmConCliente.setBackground(new Color(244, 238, 224));
+		mntmConCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmConCliente);
 		
 		JMenuItem mntmAltCliente = new JMenuItem("Alterar");
+		mntmAltCliente.setBackground(new Color(244, 238, 224));
+		mntmAltCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmAltCliente);
 		
 		JMenuItem mntmExcCliente = new JMenuItem("Excluir");
+		mntmExcCliente.setBackground(new Color(244, 238, 224));
+		mntmExcCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmExcCliente);
 		
 		JMenu mnFuncionarios = new JMenu("Funcionários");
+		mnFuncionarios.setBackground(new Color(244, 238, 224));
+		mnFuncionarios.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnFuncionarios);
 		
 		JMenuItem mntmCadFuncionario = new JMenuItem("Cadastrar");
+		mntmCadFuncionario.setForeground(new Color(57, 54, 70));
+		mntmCadFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmCadFuncionario);
 		
 		JMenuItem mntmConFuncionario = new JMenuItem("Consultar");
+		mntmConFuncionario.setForeground(new Color(57, 54, 70));
+		mntmConFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmConFuncionario);
 		
 		JMenuItem mntmAltFuncionario = new JMenuItem("Alterar");
+		mntmAltFuncionario.setForeground(new Color(57, 54, 70));
+		mntmAltFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmAltFuncionario);
 		
 		JMenuItem mntmExcFuncionario = new JMenuItem("Excluir");
+		mntmExcFuncionario.setForeground(new Color(57, 54, 70));
+		mntmExcFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmExcFuncionario);
 		
 		JMenu mnAbout = new JMenu("Sobre");
+		mnAbout.setForeground(new Color(57, 54, 70));
 		mnAbout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
