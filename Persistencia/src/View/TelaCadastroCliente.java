@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaCadastroCliente extends JFrame {
 
@@ -59,69 +60,85 @@ public class TelaCadastroCliente extends JFrame {
 	 */
 	private void initialize() {
 		frmCadastroCliente = new JFrame();
+		frmCadastroCliente.setResizable(false);
 		frmCadastroCliente.setTitle("Cadastro cliente");
 		frmCadastroCliente.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroCliente.class.getResource("/images/logo.jpg")));
-		frmCadastroCliente.setBounds(100, 100, 367, 300);
+		frmCadastroCliente.setBounds(100, 100, 363, 375);
 		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastroCliente.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 351, 261);
+		panel.setBackground(new Color(57, 54, 70));
+		panel.setBounds(0, 0, 351, 363);
 		frmCadastroCliente.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Cadastro cliente");
+		lblNewLabel.setForeground(new Color(244, 238, 224));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(0, 23, 351, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nome:");
-		lblNewLabel_1.setBounds(25, 48, 46, 14);
+		lblNewLabel_1.setForeground(new Color(244, 238, 224));
+		lblNewLabel_1.setBounds(25, 79, 46, 14);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("CPF:");
-		lblNewLabel_2.setBounds(25, 104, 46, 14);
+		lblNewLabel_2.setForeground(new Color(244, 238, 224));
+		lblNewLabel_2.setBounds(25, 116, 46, 14);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Endereco:");
-		lblNewLabel_3.setBounds(208, 104, 115, 14);
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Telefone");
-		lblNewLabel_4.setBounds(208, 160, 81, 14);
+		JLabel lblNewLabel_4 = new JLabel("Telefone:");
+		lblNewLabel_4.setForeground(new Color(244, 238, 224));
+		lblNewLabel_4.setBounds(23, 233, 81, 14);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("E-mail");
-		lblNewLabel_5.setBounds(25, 160, 46, 14);
+		JLabel lblNewLabel_5 = new JLabel("E-mail:");
+		lblNewLabel_5.setForeground(new Color(244, 238, 224));
+		lblNewLabel_5.setBounds(25, 193, 46, 14);
 		panel.add(lblNewLabel_5);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(25, 73, 297, 20);
+		txtNome.setBackground(new Color(244, 238, 224));
+		txtNome.setForeground(new Color(0, 0, 0));
+		txtNome.setBounds(114, 73, 152, 20);
 		panel.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCPF = new JTextField();
-		txtCPF.setBounds(25, 129, 127, 20);
+		txtCPF.setBackground(new Color(244, 238, 224));
+		txtCPF.setBounds(114, 114, 152, 20);
 		panel.add(txtCPF);
 		txtCPF.setColumns(10);
 		
-		txtEndereco = new JTextField();
-		txtEndereco.setBounds(208, 129, 115, 20);
-		panel.add(txtEndereco);
-		txtEndereco.setColumns(10);
-		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(25, 185, 127, 20);
+		txtEmail.setBackground(new Color(244, 238, 224));
+		txtEmail.setBounds(114, 191, 152, 20);
 		panel.add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		txtTelefone = new JTextField();
-		txtTelefone.setBounds(208, 185, 115, 20);
+		txtTelefone.setBackground(new Color(244, 238, 224));
+		txtTelefone.setBounds(114, 231, 152, 20);
 		panel.add(txtTelefone);
 		txtTelefone.setColumns(10);
 		
+		txtEndereco = new JTextField();
+		txtEndereco.setBounds(114, 153, 152, 20);
+		panel.add(txtEndereco);
+		txtEndereco.setBackground(new Color(244, 238, 224));
+		txtEndereco.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Endereco:");
+		lblNewLabel_3.setBounds(25, 155, 115, 14);
+		panel.add(lblNewLabel_3);
+		lblNewLabel_3.setForeground(new Color(244, 238, 224));
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(139, 285, 127, 23);
+		panel.add(btnCadastrar);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = txtNome.getText();
@@ -136,8 +153,6 @@ public class TelaCadastroCliente extends JFrame {
 				
 			}
 		});
-		btnCadastrar.setBounds(120, 227, 127, 23);
-		panel.add(btnCadastrar);
 	}
 
 }
