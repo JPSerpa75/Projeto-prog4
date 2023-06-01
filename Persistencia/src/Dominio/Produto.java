@@ -49,5 +49,9 @@ public class Produto {
 		this.venda = venda;
 	}
 	
+	public String toString() {
+		return this.getDescricao();
+	}
+	
 	
 }

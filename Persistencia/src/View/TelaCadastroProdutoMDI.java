@@ -1,14 +1,13 @@
 package View;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class TelaCadastroProdutoMDI extends JInternalFrame {
 	private JTextField textField;
