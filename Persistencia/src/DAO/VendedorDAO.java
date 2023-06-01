@@ -2,12 +2,15 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Connection.ConnectionFactoryMySQL;
+import Dominio.Produto;
 import Dominio.Vendedor;
 
 public class VendedorDAO {
@@ -35,5 +38,30 @@ Connection con;
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(j, "Vendedor não cadastrado, erro: "+ e.getMessage());
 		}
+	}
+	
+	public ArrayList<Vendedor> GetVendedorNome(String nome, JFrame j) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		ArrayList<Vendedor> vendedores = new ArrayList<>();
+		String sql = "SELECT * FROM vendedor WHERE nome LIKE '%"+ nome +"%'";
+		try {
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Vendedor v  = new Vendedor();
+				v.setIdVendedor(rs.getInt("idVendedor"));
+				v.setNome(rs.getString("nome"));
+				v.setTelefone(rs.getString("telefone"));
+				v.setCpf(rs.getString("cpf"));
+				v.setUsuario(rs.getString("usuario"));
+				v.setSenha(rs.getString("senha"));
+				vendedores.add(v);
+			}
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
+		}
+		
+		return vendedores;
 	}
 }
