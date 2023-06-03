@@ -135,7 +135,7 @@ public class TelaCadastroCliente extends JFrame {
 		lblNewLabel_3.setForeground(new Color(244, 238, 224));
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(139, 285, 127, 23);
+		btnCadastrar.setBounds(25, 285, 298, 23);
 		panel.add(btnCadastrar);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
