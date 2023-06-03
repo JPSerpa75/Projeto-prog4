@@ -193,12 +193,18 @@ public class TelaCadastroPedido extends JFrame {
 		JButton btnNewButton = new JButton("Adicionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ItemPedido ip = new ItemPedido();
-				ip.setProduto((Produto)cbbProdutos.getSelectedItem());
-				ip.setQuantidade(Float.valueOf(txtQtd.getText()));
-				ItensProdutos.add(ip);
-				atualizaBusca(ItensProdutos);
-				txtQtd.setText(getName());
+				if(txtQtd.getText().trim().length() > 0) {
+					ItemPedido ip = new ItemPedido();
+					ip.setProduto((Produto)cbbProdutos.getSelectedItem());
+					ip.setQuantidade(Float.valueOf(txtQtd.getText()));
+					ip.setPrecoTotalItem(ip.getProduto().getVenda() * ip.getQuantidade());
+					ItensProdutos.add(ip);
+					atualizaBusca(ItensProdutos);
+					txtQtd.setText("");		
+				}else {
+					JOptionPane.showMessageDialog(frmCadastroDePedido, "Quantidade não pode ser vazia!");
+				}
+
 			}
 		});
 		btnNewButton.setBounds(612, 95, 90, 23);
