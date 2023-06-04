@@ -26,6 +26,14 @@ public class Vendedor {
 		this.cpf = cpf;
 	}
 	
+	public Vendedor(String nome, String usuario, String telefone, String cpf) {
+		super();
+		this.nome = nome;
+		this.usuario = usuario;
+		this.telefone = telefone;
+		this.cpf = cpf;
+	}
+	
 	public long getIdVendedor() {
 		return idVendedor;
 	}

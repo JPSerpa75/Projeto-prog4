@@ -49,8 +49,15 @@ public class TelaConsultaVendedor {
 	 */
 	public TelaConsultaVendedor() {
 		initialize();
+		atualizaBusca();
 	}
 	
+	
+	
+	public JFrame getFrmConsultarVendedor() {
+		return frmConsultarVendedor;
+	}
+
 	private void atualizaBusca() {
 		VendedorDAO dao = new VendedorDAO();
 		String nome = txtBsucar.getText();
@@ -105,6 +112,27 @@ public class TelaConsultaVendedor {
 		));
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(panel, "Selecione uma linha para poder alterar o vendedor!");
+				}else {
+					Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String usuario = (String) table.getValueAt(table.getSelectedRow(), 2);
+					String telefone = (String) table.getValueAt(table.getSelectedRow(), 3);
+					String cpf = (String) table.getValueAt(table.getSelectedRow(), 4);
+					TelaAlterarVendedor ta = new TelaAlterarVendedor();
+					ta.setTxtId(id.toString());
+					ta.setTxtNome(nome.toString());
+					ta.setTxtUser(usuario.toString());
+					ta.setTxtTelefone(telefone.toString());
+					ta.setTxtCpf(cpf.toString());
+					ta.getFrame().setVisible(true);
+					atualizaBusca();
+				}
+			}
+		});
 		btnAlterar.setBounds(515, 397, 89, 23);
 		panel.add(btnAlterar);
 		

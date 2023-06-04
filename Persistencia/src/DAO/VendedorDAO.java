@@ -64,4 +64,25 @@ Connection con;
 		
 		return vendedores;
 	}
+
+	public void update(Vendedor v, JFrame frame) {
+		PreparedStatement stmt;
+		String sql = "UPDATE vendedor SET nome = ?, usuario = ? , telefone = ?, cpf = ? WHERE idVendedor=?";
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, v.getNome());
+			stmt.setString(2, v.getUsuario());
+			stmt.setString(3, v.getTelefone());
+			stmt.setString(4, v.getCpf());
+			stmt.setLong(5, v.getIdVendedor());
+			stmt.executeUpdate();
+			JOptionPane.showMessageDialog(frame, "Dado atualizado com sucesso!");
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(frame, "Erro ao atualizar dados: " + e.getMessage());
+		}
+		
+		
+	}
+	
+	
 }
