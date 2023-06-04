@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import Connection.ConnectionFactoryMySQL;
 import Dominio.Cliente;
 import Dominio.Produto;
+import Dominio.Vendedor;
 
 public class ClienteDAO {
 
@@ -136,6 +137,29 @@ public class ClienteDAO {
 				JOptionPane.showMessageDialog(j, "Erro ao atualizar dado: " + e.getMessage());
 			}
 			
+		}
+		
+		public Cliente getClienteId(Long id, JFrame j) {
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			Cliente cliente = new Cliente();
+			String sql = "SELECT * FROM cliente WHERE idCliente ="+ id +";";
+			try {
+				stmt = con.prepareStatement(sql);
+				rs = stmt.executeQuery();
+				while(rs.next()) {
+					cliente.setIdCliente(rs.getLong("idCliente"));
+					cliente.setNome(rs.getString("Nome"));
+					cliente.setCpf(rs.getString("CPF"));
+					cliente.setEndereco(rs.getString("Endereco"));
+					cliente.setTelefone(rs.getString("Telefone"));
+					cliente.setEmail(rs.getString("email"));
+				}
+			}catch(SQLException e) {
+				JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
+			}
+			
+			return cliente;
 		}
 	
 }
