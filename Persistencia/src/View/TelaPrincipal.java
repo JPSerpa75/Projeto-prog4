@@ -151,30 +151,32 @@ public class TelaPrincipal extends JFrame {
 		mntmExcCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmExcCliente);
 		
-		JMenu mnFuncionarios = new JMenu("Funcionários");
+		JMenu mnFuncionarios = new JMenu("Vendedor");
 		mnFuncionarios.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnFuncionarios);
 		
 		JMenuItem mntmCadFuncionario = new JMenuItem("Cadastrar");
+		mntmCadFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroVendedor tc = new TelaCadastroVendedor();
+				tc.getFrmCadVendedor().setVisible(true);
+			}
+		});
 		mntmCadFuncionario.setForeground(new Color(57, 54, 70));
 		mntmCadFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmCadFuncionario);
 		
 		JMenuItem mntmConFuncionario = new JMenuItem("Consultar");
+		mntmConFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaVendedor tc = new TelaConsultaVendedor();
+				tc.getFrmConsultarVendedor().setVisible(true);
+			}
+		});
 		mntmConFuncionario.setForeground(new Color(57, 54, 70));
 		mntmConFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmConFuncionario);
-		
-		JMenuItem mntmAltFuncionario = new JMenuItem("Alterar");
-		mntmAltFuncionario.setForeground(new Color(57, 54, 70));
-		mntmAltFuncionario.setBackground(new Color(244, 238, 224));
-		mnFuncionarios.add(mntmAltFuncionario);
-		
-		JMenuItem mntmExcFuncionario = new JMenuItem("Excluir");
-		mntmExcFuncionario.setForeground(new Color(57, 54, 70));
-		mntmExcFuncionario.setBackground(new Color(244, 238, 224));
-		mnFuncionarios.add(mntmExcFuncionario);
 		
 		JMenu mnAbout = new JMenu("Sobre");
 		mnAbout.setForeground(new Color(57, 54, 70));

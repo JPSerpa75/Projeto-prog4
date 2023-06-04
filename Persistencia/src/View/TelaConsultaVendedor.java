@@ -86,7 +86,7 @@ public class TelaConsultaVendedor {
 		frmConsultarVendedor = new JFrame();
 		frmConsultarVendedor.setTitle("Consultar vendedor");
 		frmConsultarVendedor.setBounds(100, 100, 641, 470);
-		frmConsultarVendedor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultarVendedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmConsultarVendedor.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -171,6 +171,19 @@ public class TelaConsultaVendedor {
 		panel.add(lblNewLabel);
 		
 		JButton btnAltSenha = new JButton("Alterar Senha");
+		btnAltSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(panel, "Selecione uma linha para poder alterar o vendedor!");
+				}else {
+					Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+					TelaAlterarSenhaVendedor ta = new TelaAlterarSenhaVendedor();
+					ta.setTxtId(id.toString());
+					ta.getFrame().setVisible(true);
+					atualizaBusca();
+				}
+			}
+		});
 		btnAltSenha.setBounds(370, 397, 135, 23);
 		panel.add(btnAltSenha);
 	}

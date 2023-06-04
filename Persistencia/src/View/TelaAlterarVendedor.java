@@ -131,8 +131,7 @@ public class TelaAlterarVendedor {
 				Vendedor v = new Vendedor(nome, usuario, telefone, cpf);
 				v.setIdVendedor(Long.parseLong(txtId.getText()));
 				VendedorDAO dao = new VendedorDAO();
-				dao.update(v, frame);
-				
+				dao.update(v, frame);				
 				frame.dispose();
 			}
 		});

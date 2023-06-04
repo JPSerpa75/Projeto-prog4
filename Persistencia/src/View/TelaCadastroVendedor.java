@@ -53,12 +53,26 @@ public class TelaCadastroVendedor {
 	public TelaCadastroVendedor() {
 		initialize();
 	}
+	
+	private void limparCampos() {
+		txtNome.setText("");
+		txtUser.setText("");
+		txtSenha.setText("");
+		txtConfSenha.setText("");
+		txtTelefone.setText("");
+		txtCpf.setText("");
+	}
+
+	public JFrame getFrmCadVendedor() {
+		return frmCadVendedor;
+	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frmCadVendedor = new JFrame();
+		frmCadVendedor.setResizable(false);
 		frmCadVendedor.setTitle("Cadastrar Vendedor");
 		frmCadVendedor.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroVendedor.class.getResource("/images/logo.jpg")));
 		frmCadVendedor.getContentPane().setBackground(new Color(57, 54, 70));
@@ -132,6 +146,7 @@ public class TelaCadastroVendedor {
 					Vendedor v = new Vendedor(nome, usuario, senhaCripto, telefone, cpf);
 					VendedorDAO dao = new VendedorDAO();
 					dao.Create(v, frmCadVendedor);
+					limparCampos();
 					
 				}else {
 					JOptionPane.showMessageDialog(btnCadastrar, "As senhas não são iguais!");
@@ -158,6 +173,6 @@ public class TelaCadastroVendedor {
 		txtConfSenha.setBounds(20, 167, 319, 20);
 		frmCadVendedor.getContentPane().add(txtConfSenha);
 		frmCadVendedor.setBounds(100, 100, 370, 393);
-		frmCadVendedor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadVendedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
