@@ -74,7 +74,7 @@ public class TelaConsultaVendedor {
 		}
 		
 		if(tableModel.getRowCount()==0) {
-			JOptionPane.showMessageDialog(frmConsultarVendedor, "Nenhum produto foi encontrado!");
+			JOptionPane.showMessageDialog(frmConsultarVendedor, "Nenhum vendedor foi encontrado!");
 			txtBsucar.setText("");
 		}
 	}
@@ -137,7 +137,15 @@ public class TelaConsultaVendedor {
 		panel.add(btnAlterar);
 		
 		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(416, 397, 89, 23);
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+				VendedorDAO dao = new VendedorDAO();
+				dao.delete(id, frmConsultarVendedor);
+				atualizaBusca();	
+			}
+		});
+		btnExcluir.setBounds(271, 397, 89, 23);
 		panel.add(btnExcluir);
 		
 		txtBsucar = new JTextField();
@@ -161,5 +169,9 @@ public class TelaConsultaVendedor {
 		lblNewLabel.setBackground(new Color(244, 238, 224));
 		lblNewLabel.setBounds(20, 35, 135, 14);
 		panel.add(lblNewLabel);
+		
+		JButton btnAltSenha = new JButton("Alterar Senha");
+		btnAltSenha.setBounds(370, 397, 135, 23);
+		panel.add(btnAltSenha);
 	}
 }

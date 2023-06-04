@@ -30,7 +30,7 @@ public class ClienteDAO {
 			String sql = "INSERT INTO cliente(nome, cpf, endereco, telefone, email) Values(?, ?, ?, ?, ?)";
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, cliente.getNome());
-			stmt.setString(2, cliente.getNome());
+			stmt.setString(2, cliente.getCpf());
 			stmt.setString(3, cliente.getEndereco());
 			stmt.setString(4, cliente.getTelefone());
 			stmt.setString(5, cliente.getEmail());

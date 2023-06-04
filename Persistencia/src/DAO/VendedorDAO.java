@@ -83,6 +83,34 @@ Connection con;
 		
 		
 	}
-	
+
+	public void delete(Long id, JFrame frmConsultarVendedor) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "DELETE FROM vendedor WHERE idVendedor = ?";
+		String busca = "SELECT * FROM pedido WHERE idVendedor = ?";
+		try {
+			int confirma = JOptionPane.showConfirmDialog(frmConsultarVendedor, "Confirma a exclusão?", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+			if(confirma==0) {
+				stmt = con.prepareStatement(busca);
+				stmt.setLong(1, id);
+				rs = stmt.executeQuery();
+				if(!rs.next()) {
+					stmt = con.prepareStatement(sql);
+					stmt.setLong(1, id);
+					stmt.executeUpdate();
+					JOptionPane.showMessageDialog(frmConsultarVendedor, "Dado excluido com sucesso!");
+				}else {
+					JOptionPane.showMessageDialog(frmConsultarVendedor, "Operação cancelada, o vendedor está vinculado a um pedido!");
+				}
+				
+			}else {
+				JOptionPane.showMessageDialog(frmConsultarVendedor, "Operação cancelada!");
+			}
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(frmConsultarVendedor, "Erro ao excluir: " + e.getMessage());
+		}
+		
+	}
 	
 }
