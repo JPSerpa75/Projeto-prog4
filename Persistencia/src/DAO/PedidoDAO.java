@@ -73,6 +73,8 @@ public class PedidoDAO {
 	}
 
 	public ArrayList<Pedido> search(String vendedor, String cliente, Float precoMin, Float precoMax, Long idPedido, JFrame j) {
+		VendedorDAO vDAO = new VendedorDAO();
+		ClienteDAO cDAO = new ClienteDAO();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
@@ -110,8 +112,8 @@ public class PedidoDAO {
 				p.setDataPedido((LocalDateTime) rs.getObject("data"));
 				p.setPrecoTotalPedido(rs.getFloat("precoTotal"));
 				p.setIdPedido(rs.getLong("idPedido"));
-//				p.setCliente(rs.getLong("idCliente"));
-//				p.setVendedor(rs.getLong("idVendedor"));
+				p.setCliente( cDAO.getClienteId(rs.getLong("idCliente"), j));
+				p.setVendedor(vDAO.getVendedorId(rs.getLong("idVendedor"), j));
 				pedidos.add(p);
 			}
 

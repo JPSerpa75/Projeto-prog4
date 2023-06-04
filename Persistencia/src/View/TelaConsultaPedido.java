@@ -89,10 +89,8 @@ public class TelaConsultaPedido extends Frame {
 			
 			tableModel.addRow(new Object[] { 
 				p.getIdPedido(), 
-				"aqui vai nome",
-				"aqui vai nome",
-//				p.getVendedor().getNome(), 
-//				p.getCliente().getNome(),
+				p.getVendedor().getNome(), 
+				p.getCliente().getNome(),
 				data, 
 				p.getPrecoTotalPedido() 		
 			});
@@ -114,6 +112,7 @@ public class TelaConsultaPedido extends Frame {
 	 */
 	private void initialize() {
 		FrmConsultaPedido = new JFrame();
+		FrmConsultaPedido.setTitle("Consultar pedidos");
 		FrmConsultaPedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		FrmConsultaPedido.setResizable(false);
 		FrmConsultaPedido.getContentPane().setBackground(new Color(57, 54, 70));
@@ -222,6 +221,7 @@ public class TelaConsultaPedido extends Frame {
 				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
 				TelaVisualizarPedido tp = new TelaVisualizarPedido(id);
 				tp.getFrmVisualizarPedido().setVisible(true);
+				FrmConsultaPedido.dispose();
 				
 				
 			}

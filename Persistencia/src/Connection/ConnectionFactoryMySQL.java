@@ -10,7 +10,7 @@ public class ConnectionFactoryMySQL {
 
 	private static String banco = "mercado";
 	private static String usuario = "root";
-	private static String senha = "12332118";
+	private static String senha = "root";
 	private static String url ="jdbc:mysql://localhost:3306/";
 	
 	//Atributo que garante a criação de uma única instância do banco de dados

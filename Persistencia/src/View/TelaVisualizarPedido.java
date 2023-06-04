@@ -76,8 +76,8 @@ public class TelaVisualizarPedido extends JFrame {
 		}
 
 		txtPrecoFinal.setText(Float.toString(pedidos.get(0).getPrecoTotalPedido()));
-		// txtCliente.setText(pedidos.get(0).getCliente().getNome());
-		// txtVendedor.setText(pedidos.get(0).getVendedor().getNome());
+		txtCliente.setText(pedidos.get(0).getCliente().getNome());
+		txtVendedor.setText(pedidos.get(0).getVendedor().getNome());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
 		String data = pedidos.get(0).getDataPedido().format(formatter);
@@ -118,7 +118,7 @@ public class TelaVisualizarPedido extends JFrame {
 		frmVisualizarPedido.setResizable(false);
 		frmVisualizarPedido.getContentPane().setBackground(new Color(57, 54, 70));
 		frmVisualizarPedido.setBounds(100, 100, 787, 544);
-		frmVisualizarPedido.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVisualizarPedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmVisualizarPedido.getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Visualizar Pedido");

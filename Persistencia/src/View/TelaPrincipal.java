@@ -1,5 +1,7 @@
 package View;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.Color;
+import javax.swing.JPopupMenu;
 
 public class TelaPrincipal extends JFrame {
 
@@ -57,31 +59,32 @@ public class TelaPrincipal extends JFrame {
 	private void initialize() {
 		frmTelaPrincipal = new JFrame();
 		frmTelaPrincipal.setTitle("Home");
-		frmTelaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
+		frmTelaPrincipal.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
 		frmTelaPrincipal.setResizable(false);
 		frmTelaPrincipal.setBounds(100, 100, 450, 300);
 		frmTelaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTelaPrincipal.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(57, 54, 70));
 		panel.setBounds(0, 0, 434, 261);
 		frmTelaPrincipal.getContentPane().add(panel);
 		panel.setLayout(null);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(244, 238, 224));
 		menuBar.setBounds(0, 0, 434, 22);
 		panel.add(menuBar);
-		
+
 		JMenu mnProduto = new JMenu("Produto");
 		mnProduto.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnProduto);
-		
+
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(433, 258, -431, -236);
 		panel.add(desktopPane);
-		
+
 		JMenuItem mntmCadProduto = new JMenuItem("Cadastrar");
 		mntmCadProduto.setBackground(new Color(244, 238, 224));
 		mntmCadProduto.setForeground(new Color(57, 54, 70));
@@ -96,7 +99,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		mnProduto.add(mntmCadProduto);
-		
+
 		JMenuItem mntmConProduto = new JMenuItem("Consultar");
 		mntmConProduto.setBackground(new Color(244, 238, 224));
 		mntmConProduto.setForeground(new Color(57, 54, 70));
@@ -107,22 +110,22 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		mnProduto.add(mntmConProduto);
-		
+
 		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
 		mntmAltProduto.setBackground(new Color(244, 238, 224));
 		mntmAltProduto.setForeground(new Color(57, 54, 70));
 		mnProduto.add(mntmAltProduto);
-		
+
 		JMenuItem mntmExcProduto = new JMenuItem("Excluir");
 		mntmExcProduto.setBackground(new Color(244, 238, 224));
 		mntmExcProduto.setForeground(new Color(57, 54, 70));
 		mnProduto.add(mntmExcProduto);
-		
+
 		JMenu mnCliente = new JMenu("Cliente");
 		mnCliente.setBackground(new Color(244, 238, 224));
 		mnCliente.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnCliente);
-		
+
 		JMenuItem mntmCadCliente = new JMenuItem("Cadastrar");
 		mntmCadCliente.setBackground(new Color(244, 238, 224));
 		mntmCadCliente.setForeground(new Color(57, 54, 70));
@@ -130,31 +133,31 @@ public class TelaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroCliente tc = new TelaCadastroCliente();
 				tc.getFrmCadastroCliente().setVisible(true);
-				
+
 			}
 		});
 		mnCliente.add(mntmCadCliente);
-		
+
 		JMenuItem mntmConCliente = new JMenuItem("Consultar");
 		mntmConCliente.setBackground(new Color(244, 238, 224));
 		mntmConCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmConCliente);
-		
+
 		JMenuItem mntmAltCliente = new JMenuItem("Alterar");
 		mntmAltCliente.setBackground(new Color(244, 238, 224));
 		mntmAltCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmAltCliente);
-		
+
 		JMenuItem mntmExcCliente = new JMenuItem("Excluir");
 		mntmExcCliente.setBackground(new Color(244, 238, 224));
 		mntmExcCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmExcCliente);
-		
+
 		JMenu mnFuncionarios = new JMenu("Vendedor");
 		mnFuncionarios.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.setForeground(new Color(57, 54, 70));
 		menuBar.add(mnFuncionarios);
-		
+
 		JMenuItem mntmCadFuncionario = new JMenuItem("Cadastrar");
 		mntmCadFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -165,7 +168,7 @@ public class TelaPrincipal extends JFrame {
 		mntmCadFuncionario.setForeground(new Color(57, 54, 70));
 		mntmCadFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmCadFuncionario);
-		
+
 		JMenuItem mntmConFuncionario = new JMenuItem("Consultar");
 		mntmConFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,19 +179,58 @@ public class TelaPrincipal extends JFrame {
 		mntmConFuncionario.setForeground(new Color(57, 54, 70));
 		mntmConFuncionario.setBackground(new Color(244, 238, 224));
 		mnFuncionarios.add(mntmConFuncionario);
-		
+
 		JMenu mnAbout = new JMenu("Sobre");
 		mnAbout.setForeground(new Color(57, 54, 70));
 		mnAbout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(frmTelaPrincipal, "Desenvolvido por João Pedro Serpa \nSoftware de gerenciamento génerico \nVersão 1.0");
+				JOptionPane.showMessageDialog(frmTelaPrincipal,
+						"Desenvolvido por João Pedro Serpa \nSoftware de gerenciamento génerico \nVersão 1.0");
 			}
 		});
-		menuBar.add(mnAbout);
-		
-		
-		
 
+		JMenu mnPedido = new JMenu("Pedido");
+		menuBar.add(mnPedido);
+
+		JMenuItem mntmCadPedido = new JMenuItem("Cadastrar");
+		mntmCadPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroPedido tp = new TelaCadastroPedido();
+				tp.getFrmCadastroDePedido().setVisible(true);
+			}
+		});
+		mnPedido.add(mntmCadPedido);
+
+		JMenuItem mntmConPedido = new JMenuItem("Consultar");
+		mntmConPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaPedido tp = new TelaConsultaPedido();
+				tp.getFrmConsultaPedido().setVisible(true);
+			}
+		});
+		mnPedido.add(mntmConPedido);
+		menuBar.add(mnAbout);
+
+	}
+
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

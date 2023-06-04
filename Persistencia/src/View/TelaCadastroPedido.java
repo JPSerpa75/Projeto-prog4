@@ -133,7 +133,7 @@ public class TelaCadastroPedido extends JFrame {
 		frmCadastroDePedido.setResizable(false);
 		frmCadastroDePedido.getContentPane().setBackground(new Color(57, 54, 70));
 		frmCadastroDePedido.setBounds(100, 100, 787, 544);
-		frmCadastroDePedido.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastroDePedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmCadastroDePedido.getContentPane().setLayout(null);
 
 		List<ItemPedido> ItensProdutos = new ArrayList<>();
@@ -288,6 +288,9 @@ public class TelaCadastroPedido extends JFrame {
 					pedido.setPrecoTotalPedido(Float.valueOf(txtPrecoFinal.getText()));
 
 					pDAO.Create(pedido, ItensProdutos, frmCadastroDePedido);
+					
+					frmCadastroDePedido.dispose();
+					
 				} else {
 					JOptionPane.showMessageDialog(frmCadastroDePedido, "Campos Obrigatorios não preenchidos!");
 				}
