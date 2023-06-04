@@ -49,8 +49,15 @@ public class TelaConsultaVendedor {
 	 */
 	public TelaConsultaVendedor() {
 		initialize();
+		atualizaBusca();
 	}
 	
+	
+	
+	public JFrame getFrmConsultarVendedor() {
+		return frmConsultarVendedor;
+	}
+
 	private void atualizaBusca() {
 		VendedorDAO dao = new VendedorDAO();
 		String nome = txtBsucar.getText();
@@ -67,7 +74,7 @@ public class TelaConsultaVendedor {
 		}
 		
 		if(tableModel.getRowCount()==0) {
-			JOptionPane.showMessageDialog(frmConsultarVendedor, "Nenhum produto foi encontrado!");
+			JOptionPane.showMessageDialog(frmConsultarVendedor, "Nenhum vendedor foi encontrado!");
 			txtBsucar.setText("");
 		}
 	}
@@ -79,7 +86,7 @@ public class TelaConsultaVendedor {
 		frmConsultarVendedor = new JFrame();
 		frmConsultarVendedor.setTitle("Consultar vendedor");
 		frmConsultarVendedor.setBounds(100, 100, 641, 470);
-		frmConsultarVendedor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultarVendedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmConsultarVendedor.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -105,11 +112,40 @@ public class TelaConsultaVendedor {
 		));
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(panel, "Selecione uma linha para poder alterar o vendedor!");
+				}else {
+					Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String usuario = (String) table.getValueAt(table.getSelectedRow(), 2);
+					String telefone = (String) table.getValueAt(table.getSelectedRow(), 3);
+					String cpf = (String) table.getValueAt(table.getSelectedRow(), 4);
+					TelaAlterarVendedor ta = new TelaAlterarVendedor();
+					ta.setTxtId(id.toString());
+					ta.setTxtNome(nome.toString());
+					ta.setTxtUser(usuario.toString());
+					ta.setTxtTelefone(telefone.toString());
+					ta.setTxtCpf(cpf.toString());
+					ta.getFrame().setVisible(true);
+					atualizaBusca();
+				}
+			}
+		});
 		btnAlterar.setBounds(515, 397, 89, 23);
 		panel.add(btnAlterar);
 		
 		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(416, 397, 89, 23);
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+				VendedorDAO dao = new VendedorDAO();
+				dao.delete(id, frmConsultarVendedor);
+				atualizaBusca();	
+			}
+		});
+		btnExcluir.setBounds(271, 397, 89, 23);
 		panel.add(btnExcluir);
 		
 		txtBsucar = new JTextField();
@@ -133,5 +169,22 @@ public class TelaConsultaVendedor {
 		lblNewLabel.setBackground(new Color(244, 238, 224));
 		lblNewLabel.setBounds(20, 35, 135, 14);
 		panel.add(lblNewLabel);
+		
+		JButton btnAltSenha = new JButton("Alterar Senha");
+		btnAltSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(panel, "Selecione uma linha para poder alterar o vendedor!");
+				}else {
+					Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+					TelaAlterarSenhaVendedor ta = new TelaAlterarSenhaVendedor();
+					ta.setTxtId(id.toString());
+					ta.getFrame().setVisible(true);
+					atualizaBusca();
+				}
+			}
+		});
+		btnAltSenha.setBounds(370, 397, 135, 23);
+		panel.add(btnAltSenha);
 	}
 }

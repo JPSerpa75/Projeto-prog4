@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import Connection.ConnectionFactoryMySQL;
 import Dominio.Cliente;
 import Dominio.Produto;
+import Dominio.Vendedor;
 
 public class ClienteDAO {
 
@@ -30,7 +31,7 @@ public class ClienteDAO {
 			String sql = "INSERT INTO cliente(nome, cpf, endereco, telefone, email) Values(?, ?, ?, ?, ?)";
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, cliente.getNome());
-			stmt.setString(2, cliente.getNome());
+			stmt.setString(2, cliente.getCpf());
 			stmt.setString(3, cliente.getEndereco());
 			stmt.setString(4, cliente.getTelefone());
 			stmt.setString(5, cliente.getEmail());
@@ -136,6 +137,29 @@ public class ClienteDAO {
 				JOptionPane.showMessageDialog(j, "Erro ao atualizar dado: " + e.getMessage());
 			}
 			
+		}
+		
+		public Cliente getClienteId(Long id, JFrame j) {
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			Cliente cliente = new Cliente();
+			String sql = "SELECT * FROM cliente WHERE idCliente ="+ id +";";
+			try {
+				stmt = con.prepareStatement(sql);
+				rs = stmt.executeQuery();
+				while(rs.next()) {
+					cliente.setIdCliente(rs.getLong("idCliente"));
+					cliente.setNome(rs.getString("Nome"));
+					cliente.setCpf(rs.getString("CPF"));
+					cliente.setEndereco(rs.getString("Endereco"));
+					cliente.setTelefone(rs.getString("Telefone"));
+					cliente.setEmail(rs.getString("email"));
+				}
+			}catch(SQLException e) {
+				JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
+			}
+			
+			return cliente;
 		}
 	
 }
