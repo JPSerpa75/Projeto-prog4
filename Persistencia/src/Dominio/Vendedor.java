@@ -80,6 +80,11 @@ public class Vendedor {
 		this.cpf = cpf;
 	}
 	
+	@Override
+    public String toString() {
+        return nome;
+    }
+	
 	   public static String hashSHA256(String password) {
 	        try {
 	            MessageDigest digest = MessageDigest.getInstance("SHA-256");

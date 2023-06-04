@@ -10,19 +10,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Connection.ConnectionFactoryMySQL;
-import Dominio.Produto;
 import Dominio.Vendedor;
 
 public class VendedorDAO {
-	
-Connection con;
-	
+
+	Connection con;
+
 	public VendedorDAO() {
 		ConnectionFactoryMySQL.getInstancia();
 		con = ConnectionFactoryMySQL.getConexao();
-		
+
 	}
-	
+
 	public void Create(Vendedor vendedor, JFrame j) {
 		PreparedStatement stmt = null;
 		try {
@@ -35,21 +34,21 @@ Connection con;
 			stmt.setString(5, vendedor.getSenha());
 			stmt.executeUpdate();
 			JOptionPane.showMessageDialog(j, "Vendedor cadastrado com sucesso!");
-		}catch(SQLException e) {
-			JOptionPane.showMessageDialog(j, "Vendedor não cadastrado, erro: "+ e.getMessage());
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(j, "Vendedor não cadastrado, erro: " + e.getMessage());
 		}
 	}
-	
+
 	public ArrayList<Vendedor> GetVendedorNome(String nome, JFrame j) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Vendedor> vendedores = new ArrayList<>();
-		String sql = "SELECT * FROM vendedor WHERE nome LIKE '%"+ nome +"%'";
+		String sql = "SELECT * FROM vendedor WHERE nome LIKE '%" + nome + "%'";
 		try {
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			while(rs.next()) {
-				Vendedor v  = new Vendedor();
+			while (rs.next()) {
+				Vendedor v = new Vendedor();
 				v.setIdVendedor(rs.getInt("idVendedor"));
 				v.setNome(rs.getString("nome"));
 				v.setTelefone(rs.getString("telefone"));
@@ -58,10 +57,10 @@ Connection con;
 				v.setSenha(rs.getString("senha"));
 				vendedores.add(v);
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
 		}
-		
+
 		return vendedores;
 	}
 
@@ -166,4 +165,5 @@ Connection con;
 		}
 	}
 	
+
 }

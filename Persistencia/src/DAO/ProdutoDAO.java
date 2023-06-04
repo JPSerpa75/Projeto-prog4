@@ -66,6 +66,33 @@ public class ProdutoDAO {
 		
 	}
 	
+	//Método consultar por id
+	public Produto ConsultarPorId(Long id, JFrame j){
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM produto WHERE idProduto = " + id;
+		Produto produto = new Produto();
+		try {
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			System.out.println("Dados capturados com sucesso!");
+			while(rs.next()) {
+				
+				produto.setIdProduto(rs.getLong("idProduto"));
+				produto.setDescricao(rs.getString("descricao"));
+				produto.setCodBarras(rs.getString("codBarras"));
+				produto.setCusto(rs.getFloat("custo"));
+				produto.setVenda(rs.getFloat("venda"));
+			
+			}
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(j, "Falha ao consultar dados, erro: " + e.getMessage());
+		}
+		
+		return produto;
+		
+	}
+	
 	
 	//Método consultar por descrição
 	public ArrayList<Produto> ConsultarPorDescricao(String descricao, JFrame j){

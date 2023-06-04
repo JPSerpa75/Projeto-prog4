@@ -2,8 +2,6 @@ package Principal;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import DAO.ProdutoDAO;
 import Dominio.Produto;
 

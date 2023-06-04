@@ -1,32 +1,25 @@
 package View;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.Font;
 import java.awt.Toolkit;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.ProdutoDAO;
 import Dominio.Produto;
-
-import javax.swing.ListSelectionModel;
-import java.awt.ScrollPane;
-import java.awt.Panel;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
 
 public class TelaConsultaProduto {
 
@@ -47,6 +40,7 @@ public class TelaConsultaProduto {
 			public void run() {
 				try {
 					TelaConsultaProduto window = new TelaConsultaProduto();
+					window.atualizaBusca();
 					window.frmConsultaProduto.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
