@@ -132,23 +132,25 @@ public class TelaConsultaCliente {
 		));
 		
 		JButton btnAlterar = new JButton("Alterar");
-//		btnAlterar.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
-//				String descricao = (String) table.getValueAt(table.getSelectedRow(), 1);
-//				String codBarras = (String) table.getValueAt(table.getSelectedRow(), 2);
-//				Float custo = (Float) table.getValueAt(table.getSelectedRow(), 3);
-//				Float venda = (Float) table.getValueAt(table.getSelectedRow(), 4);
-//				TelaAlterarProduto ta = new TelaAlterarProduto();
-//				ta.setTxtId(id.toString());
-//				ta.setTxtDescricao(descricao);
-//				ta.setTxtCodbarras(codBarras);
-//				ta.setTxtCusto(custo.toString());
-//				ta.setTxtVenda(venda.toString());
-//				ta.getfra().setVisible(true);
-//				atualizaBusca();
-//			}
-//		});
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
+				String nome = (String) table.getValueAt(table.getSelectedRow(), 1);
+				String cpf = (String) table.getValueAt(table.getSelectedRow(), 2);
+				String telefone = (String) table.getValueAt(table.getSelectedRow(), 3);
+				String endereco = (String) table.getValueAt(table.getSelectedRow(), 4);
+				String email = (String) table.getValueAt(table.getSelectedRow(), 5);
+				TelaAlterarCliente ta = new TelaAlterarCliente();
+				ta.setTxtId(id.toString());
+				ta.setTxtNome(nome);
+				ta.setTxtCPF(cpf);
+				ta.setTxtEnd(endereco);
+				ta.setTxtTel(telefone);
+				ta.setTxtEmail(email);
+				ta.getFrame().setVisible(true);
+				atualizaBusca();
+		}
+		});
 		btnAlterar.setBounds(236, 290, 89, 23);
 		panel.add(btnAlterar);
 		
