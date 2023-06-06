@@ -58,12 +58,11 @@ public class TelaConsultaCliente {
 		for(Cliente c:dao.ConsultarPorNome(nome, frame)) {
 			tableModel.addRow(new Object[] {
 					c.getIdCliente(),
-					c.getCpf(),
 					c.getNome(),
-					c.getEmail(),
+					c.getCpf(),
 					c.getTelefone(),
-					c.getEndereco()
-					
+					c.getEndereco(),
+					c.getEmail()	
 			});
 		}
 		
@@ -127,7 +126,7 @@ public class TelaConsultaCliente {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "CPF", "Telefone", "Endere\u00E7o", "Email"
+				"Id", "Nome", "CPF", "Telefone", "Endere\u00E7o", "Email"
 			}
 		));
 		
@@ -157,9 +156,9 @@ public class TelaConsultaCliente {
 		JButton btnNewButton = new JButton("Excluir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cpf = (String) table.getValueAt(table.getSelectedRow(), 2);
+				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
 				ClienteDAO dao = new ClienteDAO();
-				dao.delete(cpf, frame);
+				dao.delete(id, frame);
 				atualizaBusca();
 			}
 		});

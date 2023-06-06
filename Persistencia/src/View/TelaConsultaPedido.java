@@ -215,7 +215,7 @@ public class TelaConsultaPedido extends Frame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(table.getSelectedRow() < 0) {
-					JOptionPane.showMessageDialog(FrmConsultaPedido, "Selecione a linha a ser excluida!");
+					JOptionPane.showMessageDialog(FrmConsultaPedido, "Selecione a linha a ser visualizada!");
 					return;
 				}
 				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);

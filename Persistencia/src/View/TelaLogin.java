@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import DAO.LoginDAO;
+import DAO.VendedorDAO;
 import Dominio.Login;
+import Dominio.Vendedor;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -77,10 +79,10 @@ public class TelaLogin extends JFrame {
 		frmLogin.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuário:");
-		lblNewLabel_1.setForeground(new Color(244, 238, 224));
-		lblNewLabel_1.setBounds(38, 75, 61, 14);
-		panel.add(lblNewLabel_1);
+		JLabel lblVendedor_1 = new JLabel("Usuário:");
+		lblVendedor_1.setForeground(new Color(244, 238, 224));
+		lblVendedor_1.setBounds(38, 75, 61, 14);
+		panel.add(lblVendedor_1);
 		
 		JLabel lbl = new JLabel("Senha:");
 		lbl.setForeground(new Color(244, 238, 224));
@@ -98,13 +100,17 @@ public class TelaLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(38, 193, 170, 23);
 		btnLogin.addActionListener(new ActionListener() {
+			String pass = String.valueOf(pswPass.getPassword());
 			public void actionPerformed(ActionEvent e) {
 				String user = txtUser.getText();
-				String pass = String.valueOf(pswPass.getPassword());
+				String senhaCripto = Vendedor.hashSHA256(pass);
+				LoginDAO ld = new LoginDAO(); 
+				//ld.getSenha(user, frmLogin);
+
 				
-				Login l = new Login(user, pass);
-				LoginDAO ld = new LoginDAO();
-				ld.autenticar(l, frmLogin);
+				
+				
+
 				
 
 			}

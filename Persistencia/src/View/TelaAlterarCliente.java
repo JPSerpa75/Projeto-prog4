@@ -126,6 +126,7 @@ public class TelaAlterarCliente {
 		panel.add(lblTitle);
 		
 		txtId = new JTextField();
+		txtId.setEnabled(false);
 		txtId.setBounds(10, 89, 96, 19);
 		panel.add(txtId);
 		txtId.setColumns(10);
@@ -187,7 +188,7 @@ public class TelaAlterarCliente {
 				String telefone = txtTel.getText();
 				String endereco = txtEnd.getText();
 				String email = txtEmail.getText();
-				Cliente c = new Cliente(nome, cpf, endereco, telefone, email);
+				Cliente c = new Cliente(nome, cpf, endereco, telefone,  email);
 				c.setIdCliente(Long.parseLong(txtId.getText()));
 				ClienteDAO cd = new ClienteDAO();
 				cd.update(c, frame);

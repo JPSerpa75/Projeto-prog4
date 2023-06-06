@@ -100,28 +100,38 @@ public class ClienteDAO {
 		}
 		
 		//Operação de delete (exclusão)
-		public void delete(String CPF, JFrame j) {
+		public void delete(Long id, JFrame j) {
 			PreparedStatement stmt = null;
-			String sql = "DELETE FROM cliente WHERE CPF = ?";
+			ResultSet rs = null;
+			String sql = "DELETE FROM cliente WHERE idCliente = ?";
+			String busca = "SELECT * FROM pedido WHERE idCliente = ?";
 			try {
 				int confirma = JOptionPane.showConfirmDialog(j, "Confirma a exclusão?", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
 				if(confirma==0) {
-					stmt = con.prepareStatement(sql);
-					stmt.setString(1, CPF);
-					stmt.executeUpdate();
-					JOptionPane.showMessageDialog(j, "Dado excluido com sucesso!");
+					stmt = con.prepareStatement(busca);
+					stmt.setLong(1, id);
+					rs = stmt.executeQuery();
+					if(!rs.next()) {
+						stmt = con.prepareStatement(sql);
+						stmt.setLong(1, id);
+						stmt.executeUpdate();
+						JOptionPane.showMessageDialog(j, "Cliente excluido com sucesso!");
+					}else {
+						JOptionPane.showMessageDialog(j, "Operação cancelada, o cliente está vinculado a um pedido!");
+					}
+					
 				}else {
 					JOptionPane.showMessageDialog(j, "Operação cancelada!");
 				}
 			}catch(SQLException e) {
-				JOptionPane.showMessageDialog(j, "Erro ao excluir: " + e.getMessage() + " codigo lido: " + CPF);
+				JOptionPane.showMessageDialog(j, "Erro ao excluir: " + e.getMessage());
 			}
 		}
 		
 		//Método de update
 		public void update(Cliente c, JFrame j) {
 			PreparedStatement stmt;
-			String sql = "UPDATE cliente SET Nome = ?, email = ? , Endereco = ?, Telefone = ? WHERE idCliente=?";
+			String sql = "UPDATE cliente SET Nome = ?, email = ? , Endereco = ?,  CPF = ?, Telefone = ? WHERE idCliente=?";
 			try {
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, c.getNome());
