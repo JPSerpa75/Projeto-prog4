@@ -68,7 +68,7 @@ public class TelaLogin extends JFrame {
 		frmLogin.getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lblVendedor_1 = new JLabel("Usuário:");
+		JLabel lblVendedor_1 = new JLabel("CPF:");
 		lblVendedor_1.setForeground(new Color(244, 238, 224));
 		lblVendedor_1.setBounds(38, 75, 61, 14);
 		panel.add(lblVendedor_1);
