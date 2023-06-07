@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -62,7 +63,7 @@ public class TelaCadastroCliente extends JFrame {
 		frmCadastroCliente.setTitle("Cadastro cliente");
 		frmCadastroCliente.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroCliente.class.getResource("/images/logo.jpg")));
 		frmCadastroCliente.setBounds(100, 100, 363, 375);
-		frmCadastroCliente.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastroCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmCadastroCliente.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -139,6 +140,12 @@ public class TelaCadastroCliente extends JFrame {
 		panel.add(btnCadastrar);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtNome.getText().isEmpty() || txtCPF.getText().isEmpty() || 
+						txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(frmCadastroCliente, "Preencha os campos");
+					return;
+				}
+					
 				String nome = txtNome.getText();
 				String cpf = txtCPF.getText();
 				String endereco = txtEndereco.getText();

@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class TelaConsultaVendedor {
 
@@ -84,6 +85,8 @@ public class TelaConsultaVendedor {
 	 */
 	private void initialize() {
 		frmConsultarVendedor = new JFrame();
+		frmConsultarVendedor.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaVendedor.class.getResource("/images/logo.jpg")));
+		frmConsultarVendedor.setResizable(false);
 		frmConsultarVendedor.setTitle("Consultar vendedor");
 		frmConsultarVendedor.setBounds(100, 100, 641, 470);
 		frmConsultarVendedor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -139,6 +142,10 @@ public class TelaConsultaVendedor {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(frmConsultarVendedor, "Selecione a linha a ser excluída!");
+					return;
+				}
 				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
 				VendedorDAO dao = new VendedorDAO();
 				dao.delete(id, frmConsultarVendedor);

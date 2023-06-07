@@ -30,6 +30,7 @@ import Dominio.ItemPedido;
 import Dominio.Pedido;
 import Dominio.Produto;
 import Dominio.Vendedor;
+import java.awt.Toolkit;
 
 public class TelaCadastroPedido extends JFrame {
 
@@ -129,6 +130,7 @@ public class TelaCadastroPedido extends JFrame {
 	 */
 	private void initialize() {
 		frmCadastroDePedido = new JFrame();
+		frmCadastroDePedido.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroPedido.class.getResource("/images/logo.jpg")));
 		frmCadastroDePedido.setTitle("Cadastro de Pedido");
 		frmCadastroDePedido.setResizable(false);
 		frmCadastroDePedido.getContentPane().setBackground(new Color(57, 54, 70));
@@ -211,7 +213,10 @@ public class TelaCadastroPedido extends JFrame {
 		JButton btnNewButton = new JButton("Adicionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtQtd.getText().trim().length() > 0) {
+				if (txtQtd.getText().trim().length() <= 0 || cbbClientes.getSelectedItem() == null || cbbProdutos.getSelectedItem() == null || cbbVendedor.getSelectedItem() == null) {
+					JOptionPane.showMessageDialog(frmCadastroDePedido, "Preencha os campos!");
+					return;
+				} else {
 					ItemPedido ip = new ItemPedido();
 					ip.setProduto((Produto) cbbProdutos.getSelectedItem());
 					ip.setQuantidade(Float.valueOf(txtQtd.getText()));
@@ -219,8 +224,6 @@ public class TelaCadastroPedido extends JFrame {
 					ItensProdutos.add(ip);
 					atualizaBusca(ItensProdutos, pedido);
 					txtQtd.setText("");
-				} else {
-					JOptionPane.showMessageDialog(frmCadastroDePedido, "Quantidade não pode ser vazia!");
 				}
 
 			}
@@ -279,8 +282,12 @@ public class TelaCadastroPedido extends JFrame {
 		JButton btnFinalizarPedido = new JButton("Finalizar pedido");
 		btnFinalizarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtPrecoFinal.getText().trim().length() > 0 || cbbClientes.getSelectedItem() == null
-						|| cbbVendedor.getSelectedItem() == null) {
+				if (txtPrecoFinal.getText().trim().length() < 0 || cbbClientes.getSelectedItem() == null
+						|| cbbVendedor.getSelectedItem() == null || cbbProdutos.getSelectedItem() == null) {
+					JOptionPane.showMessageDialog(frmCadastroDePedido, "Campos Obrigatorios não preenchidos!");
+					return;	
+					
+				} else {
 					PedidoDAO pDAO = new PedidoDAO();
 					pedido.setDataPedido(LocalDateTime.now());
 					pedido.setCliente((Cliente) cbbClientes.getSelectedItem());
@@ -290,9 +297,6 @@ public class TelaCadastroPedido extends JFrame {
 					pDAO.Create(pedido, ItensProdutos, frmCadastroDePedido);
 					
 					frmCadastroDePedido.dispose();
-					
-				} else {
-					JOptionPane.showMessageDialog(frmCadastroDePedido, "Campos Obrigatorios não preenchidos!");
 				}
 
 			}

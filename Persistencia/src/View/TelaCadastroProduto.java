@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -65,6 +66,7 @@ public class TelaCadastroProduto extends JFrame {
 	 */
 	private void initialize() {
 		frmTelaDeCadastro = new JFrame();
+		frmTelaDeCadastro.setResizable(false);
 		frmTelaDeCadastro.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCadastroProduto.class.getResource("/images/logo.jpg")));
 		frmTelaDeCadastro.setTitle("Cadastro de Produto");
 		frmTelaDeCadastro.setBounds(100, 100, 366, 336);
@@ -138,18 +140,19 @@ public class TelaCadastroProduto extends JFrame {
 		JButton btnCadProduto = new JButton("Cadastrar");
 		btnCadProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtDescricao.getText().isEmpty() || txtCodbarras.getText().isEmpty() || 
+						txtCusto.getText().isEmpty() || txtVenda.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(frmTelaDeCadastro, "Preencha os campos");
+					return;
+				}
 				String descricao = txtDescricao.getText();
 				String codBarras = txtCodbarras.getText();
 				Float custo = Float.parseFloat(txtCusto.getText());
 				Float venda = Float.parseFloat(txtVenda.getText());
 				Produto p = new Produto(descricao, codBarras, custo, venda);
-				
 				ProdutoDAO dao = new ProdutoDAO();
 				dao.Create(p, frmTelaDeCadastro);
-				
 				frmTelaDeCadastro.dispose();
-				
-				
 			}
 		});
 		btnCadProduto.setBounds(20, 244, 305, 23);

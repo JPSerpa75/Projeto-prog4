@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -14,15 +16,17 @@ import Dominio.Cliente;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class TelaAlterarCliente {
 
 	public JFrame getFrmCadastroCliente() {
-		return frame;
+		return frmAlterarCliente;
 	}
 
 	public JFrame getFrame() {
-		return frame;
+		return frmAlterarCliente;
 	}
 
 	public JTextField getTxtId() {
@@ -50,19 +54,19 @@ public class TelaAlterarCliente {
 	}
 
 	public JTextField getTxtEnd() {
-		return txtEnd;
+		return txtEndereco;
 	}
 
 	public void setTxtEnd(String txtEnd) {
-		this.txtEnd.setText(txtEnd);
+		this.txtEndereco.setText(txtEnd);
 	}
 
 	public JTextField getTxtTel() {
-		return txtTel;
+		return txtTelefone;
 	}
 
 	public void setTxtTel(String txtTel) {
-		this.txtTel.setText(txtTel);
+		this.txtTelefone.setText(txtTel);
 	}
 
 	public JTextField getTxtEmail() {
@@ -75,12 +79,12 @@ public class TelaAlterarCliente {
 
 
 
-	private JFrame frame;
+	private JFrame frmAlterarCliente;
 	private JTextField txtId;
 	private JTextField txtNome;
 	private JTextField txtCPF;
-	private JTextField txtEnd;
-	private JTextField txtTel;
+	private JTextField txtEndereco;
+	private JTextField txtTelefone;
 	private JTextField txtEmail;
 
 	/**
@@ -91,7 +95,7 @@ public class TelaAlterarCliente {
 			public void run() {
 				try {
 					TelaAlterarCliente window = new TelaAlterarCliente();
-					window.frame.setVisible(true);
+					window.frmAlterarCliente.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -110,91 +114,113 @@ public class TelaAlterarCliente {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 497);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmAlterarCliente = new JFrame();
+		frmAlterarCliente.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAlterarCliente.class.getResource("/images/logo.jpg")));
+		frmAlterarCliente.setResizable(false);
+		frmAlterarCliente.setTitle("Alterar cliente");
+		frmAlterarCliente.setBounds(100, 100, 450, 497);
+		frmAlterarCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmAlterarCliente.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(57, 54, 70));
 		panel.setBounds(0, 0, 436, 460);
-		frame.getContentPane().add(panel);
+		frmAlterarCliente.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Alterar Cliente");
-		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblTitle.setBounds(176, 10, 101, 13);
+		lblTitle.setForeground(new Color(244, 238, 224));
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTitle.setBounds(176, 10, 141, 13);
 		panel.add(lblTitle);
 		
 		txtId = new JTextField();
+		txtId.setBackground(new Color(244, 238, 224));
 		txtId.setEnabled(false);
-		txtId.setBounds(10, 89, 96, 19);
+		txtId.setBounds(10, 89, 416, 19);
 		panel.add(txtId);
 		txtId.setColumns(10);
 		
 		JLabel lblId = new JLabel("Id");
+		lblId.setForeground(new Color(244, 238, 224));
 		lblId.setBounds(10, 66, 45, 13);
 		panel.add(lblId);
 		
 		JLabel lblNome = new JLabel("Nome");
+		lblNome.setForeground(new Color(244, 238, 224));
 		lblNome.setBounds(10, 118, 45, 13);
 		panel.add(lblNome);
 		
 		txtNome = new JTextField();
+		txtNome.setBackground(new Color(244, 238, 224));
 		txtNome.setColumns(10);
-		txtNome.setBounds(10, 141, 96, 19);
+		txtNome.setBounds(10, 141, 416, 19);
 		panel.add(txtNome);
 		
 		JLabel lblCpf = new JLabel("CPF");
+		lblCpf.setForeground(new Color(244, 238, 224));
 		lblCpf.setBounds(10, 170, 45, 13);
 		panel.add(lblCpf);
 		
 		txtCPF = new JTextField();
+		txtCPF.setBackground(new Color(244, 238, 224));
 		txtCPF.setColumns(10);
-		txtCPF.setBounds(10, 193, 96, 19);
+		txtCPF.setBounds(10, 193, 416, 19);
 		panel.add(txtCPF);
 		
 		JLabel lblEnd = new JLabel("Endereço");
-		lblEnd.setBounds(10, 222, 45, 13);
+		lblEnd.setForeground(new Color(244, 238, 224));
+		lblEnd.setBounds(10, 222, 66, 13);
 		panel.add(lblEnd);
 		
-		txtEnd = new JTextField();
-		txtEnd.setColumns(10);
-		txtEnd.setBounds(10, 245, 96, 19);
-		panel.add(txtEnd);
+		txtEndereco = new JTextField();
+		txtEndereco.setBackground(new Color(244, 238, 224));
+		txtEndereco.setColumns(10);
+		txtEndereco.setBounds(10, 245, 416, 19);
+		panel.add(txtEndereco);
 		
 		JLabel lblTel = new JLabel("Telefone");
-		lblTel.setBounds(10, 274, 45, 13);
+		lblTel.setForeground(new Color(244, 238, 224));
+		lblTel.setBounds(10, 274, 85, 13);
 		panel.add(lblTel);
 		
-		txtTel = new JTextField();
-		txtTel.setColumns(10);
-		txtTel.setBounds(10, 297, 96, 19);
-		panel.add(txtTel);
+		txtTelefone = new JTextField();
+		txtTelefone.setBackground(new Color(244, 238, 224));
+		txtTelefone.setColumns(10);
+		txtTelefone.setBounds(10, 297, 416, 19);
+		panel.add(txtTelefone);
 		
 		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setForeground(new Color(244, 238, 224));
 		lblEmail.setBounds(10, 326, 45, 13);
 		panel.add(lblEmail);
 		
 		txtEmail = new JTextField();
+		txtEmail.setBackground(new Color(244, 238, 224));
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(10, 349, 96, 19);
+		txtEmail.setBounds(10, 349, 416, 19);
 		panel.add(txtEmail);
 		
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtNome.getText().isEmpty() || txtCPF.getText().isEmpty() || 
+						txtEndereco.getText().isEmpty() || txtTelefone.getText().isEmpty() || txtEmail.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(frmAlterarCliente, "Preencha os campos");
+					return;
+				}
 				String nome = txtNome.getText();
 				String cpf = txtCPF.getText();
-				String telefone = txtTel.getText();
-				String endereco = txtEnd.getText();
+				String telefone = txtTelefone.getText();
+				String endereco = txtEndereco.getText();
 				String email = txtEmail.getText();
 				Cliente c = new Cliente(nome, cpf, endereco, telefone,  email);
 				c.setIdCliente(Long.parseLong(txtId.getText()));
 				ClienteDAO cd = new ClienteDAO();
-				cd.update(c, frame);
+				cd.update(c, frmAlterarCliente);
 			}
 		});
-		btnAlterar.setBounds(10, 405, 85, 21);
+		btnAlterar.setBounds(341, 402, 85, 21);
 		panel.add(btnAlterar);
 	}
 }

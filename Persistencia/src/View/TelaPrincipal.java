@@ -17,6 +17,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class TelaPrincipal extends JFrame {
 
@@ -62,19 +64,19 @@ public class TelaPrincipal extends JFrame {
 		frmTelaPrincipal.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(TelaPrincipal.class.getResource("/images/logo.jpg")));
 		frmTelaPrincipal.setResizable(false);
-		frmTelaPrincipal.setBounds(100, 100, 450, 300);
+		frmTelaPrincipal.setBounds(100, 100, 553, 346);
 		frmTelaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTelaPrincipal.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(57, 54, 70));
-		panel.setBounds(0, 0, 434, 261);
+		panel.setBounds(0, 0, 544, 311);
 		frmTelaPrincipal.getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(244, 238, 224));
-		menuBar.setBounds(0, 0, 434, 22);
+		menuBar.setBounds(0, 0, 543, 22);
 		panel.add(menuBar);
 
 		JMenu mnProduto = new JMenu("Produto");
@@ -111,16 +113,6 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnProduto.add(mntmConProduto);
 
-		JMenuItem mntmAltProduto = new JMenuItem("Alterar");
-		mntmAltProduto.setBackground(new Color(244, 238, 224));
-		mntmAltProduto.setForeground(new Color(57, 54, 70));
-		mnProduto.add(mntmAltProduto);
-
-		JMenuItem mntmExcProduto = new JMenuItem("Excluir");
-		mntmExcProduto.setBackground(new Color(244, 238, 224));
-		mntmExcProduto.setForeground(new Color(57, 54, 70));
-		mnProduto.add(mntmExcProduto);
-
 		JMenu mnCliente = new JMenu("Cliente");
 		mnCliente.setBackground(new Color(244, 238, 224));
 		mnCliente.setForeground(new Color(57, 54, 70));
@@ -139,19 +131,15 @@ public class TelaPrincipal extends JFrame {
 		mnCliente.add(mntmCadCliente);
 
 		JMenuItem mntmConCliente = new JMenuItem("Consultar");
+		mntmConCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaCliente tcc = new TelaConsultaCliente();
+				tcc.getFrame().setVisible(true);
+			}
+		});
 		mntmConCliente.setBackground(new Color(244, 238, 224));
 		mntmConCliente.setForeground(new Color(57, 54, 70));
 		mnCliente.add(mntmConCliente);
-
-		JMenuItem mntmAltCliente = new JMenuItem("Alterar");
-		mntmAltCliente.setBackground(new Color(244, 238, 224));
-		mntmAltCliente.setForeground(new Color(57, 54, 70));
-		mnCliente.add(mntmAltCliente);
-
-		JMenuItem mntmExcCliente = new JMenuItem("Excluir");
-		mntmExcCliente.setBackground(new Color(244, 238, 224));
-		mntmExcCliente.setForeground(new Color(57, 54, 70));
-		mnCliente.add(mntmExcCliente);
 
 		JMenu mnFuncionarios = new JMenu("Vendedor");
 		mnFuncionarios.setBackground(new Color(244, 238, 224));
@@ -186,7 +174,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showMessageDialog(frmTelaPrincipal,
-						"Desenvolvido por João Pedro Serpa \nSoftware de gerenciamento génerico \nVersão 1.0");
+						"Desenvolvido por \nJoão Pedro Serpa \nGuilherme Oliveira \nPaulo Henrique \nSandeiro Rebaixado Ditzz \nGerenciamento de pedidos \nVersão 1.0");
 			}
 		});
 
@@ -211,6 +199,11 @@ public class TelaPrincipal extends JFrame {
 		});
 		mnPedido.add(mntmConPedido);
 		menuBar.add(mnAbout);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/images/sand.jpg")));
+		lblNewLabel.setBounds(0, 21, 543, 290);
+		panel.add(lblNewLabel);
 
 	}
 

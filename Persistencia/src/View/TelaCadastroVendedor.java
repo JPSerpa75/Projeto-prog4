@@ -137,6 +137,11 @@ public class TelaCadastroVendedor {
 			public void actionPerformed(ActionEvent e) {
 				String senha = String.valueOf(txtSenha.getPassword());
 				String senhaConf = String.valueOf(txtConfSenha.getPassword());
+				if(txtNome.getText().isEmpty() || txtCpf.getText().isEmpty() || 
+						txtUser.getText().isEmpty() || txtTelefone.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(frmCadVendedor, "Preencha os campos");
+					return;
+				}
 				if(senha.equals(senhaConf)) {
 					String nome = txtNome.getText();
 					String cpf = txtCpf.getText();

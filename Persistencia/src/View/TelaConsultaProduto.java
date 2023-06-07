@@ -86,7 +86,7 @@ public class TelaConsultaProduto {
 		frmConsultaProduto.setTitle("Consulta produto");
 		frmConsultaProduto.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaProduto.class.getResource("/images/logo.jpg")));
 		frmConsultaProduto.setBounds(100, 100, 450, 300);
-		frmConsultaProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmConsultaProduto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmConsultaProduto.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -145,6 +145,10 @@ public class TelaConsultaProduto {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table_1.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(frmConsultaProduto, "Selecione a linha a ser excluída!");
+					return;
+				}
 				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 2);
 				ProdutoDAO dao = new ProdutoDAO();
 				dao.delete(codBarras, frmConsultaProduto);
@@ -157,6 +161,10 @@ public class TelaConsultaProduto {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table_1.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(frmConsultaProduto, "Selecione a linha a ser alterada!");
+					return;
+				}
 				Long id = (Long) table_1.getValueAt(table_1.getSelectedRow(), 0);
 				String descricao = (String) table_1.getValueAt(table_1.getSelectedRow(), 1);
 				String codBarras = (String) table_1.getValueAt(table_1.getSelectedRow(), 2);

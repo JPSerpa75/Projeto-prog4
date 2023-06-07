@@ -18,6 +18,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class TelaAlterarVendedor {
 
@@ -65,6 +66,7 @@ public class TelaAlterarVendedor {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAlterarVendedor.class.getResource("/images/logo.jpg")));
 		frame.getContentPane().setBackground(new Color(57, 54, 70));
 		frame.setBackground(new Color(57, 54, 70));
 		frame.setBounds(100, 100, 450, 529);

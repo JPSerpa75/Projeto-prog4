@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import DAO.VendedorDAO;
 import Dominio.Vendedor;
+import java.awt.Toolkit;
 
 public class TelaAlterarSenhaVendedor {
 
@@ -52,6 +53,7 @@ public class TelaAlterarSenhaVendedor {
 	 */
 	private void initialize() {
 		frmAlterarSenha = new JFrame();
+		frmAlterarSenha.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAlterarSenhaVendedor.class.getResource("/images/logo.jpg")));
 		frmAlterarSenha.setResizable(false);
 		frmAlterarSenha.setTitle("Alterar senha");
 		frmAlterarSenha.getContentPane().setBackground(new Color(57, 54, 70));

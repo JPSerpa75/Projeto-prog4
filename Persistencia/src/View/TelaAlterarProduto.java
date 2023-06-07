@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -140,6 +141,11 @@ public class TelaAlterarProduto extends JFrame {
 		JButton btnAltProduto = new JButton("Alterar");
 		btnAltProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtCodbarras.getText().isEmpty() || txtCusto.getText().isEmpty() || 
+						txtVenda.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(frmTelaDeAlterar, "Preencha os campos");
+					return;
+				}
 				String descricao = txtDescricao.getText();
 				String codBarras = txtCodbarras.getText();
 				Float custo = Float.parseFloat(txtCusto.getText());

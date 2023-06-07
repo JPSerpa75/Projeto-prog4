@@ -21,17 +21,19 @@ import Dominio.Produto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class TelaConsultaCliente {
 
-	private JFrame frame;
+	private JFrame frmConsultaDeClientes;
 	private JTextField txtNome;
 	private JTable table;
 	
 	
 
 	public JFrame getFrame() {
-		return frame;
+		return frmConsultaDeClientes;
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class TelaConsultaCliente {
 			public void run() {
 				try {
 					TelaConsultaCliente window = new TelaConsultaCliente();
-					window.frame.setVisible(true);
+					window.frmConsultaDeClientes.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,7 +57,7 @@ public class TelaConsultaCliente {
 		String nome = txtNome.getText();
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 		tableModel.setNumRows(0);
-		for(Cliente c:dao.ConsultarPorNome(nome, frame)) {
+		for(Cliente c:dao.ConsultarPorNome(nome, frmConsultaDeClientes)) {
 			tableModel.addRow(new Object[] {
 					c.getIdCliente(),
 					c.getNome(),
@@ -67,7 +69,7 @@ public class TelaConsultaCliente {
 		}
 		
 		if(tableModel.getRowCount()==0) {
-			JOptionPane.showMessageDialog(frame, "Nenhum produto foi encontrado!");
+			JOptionPane.showMessageDialog(frmConsultaDeClientes, "Nenhum cliente foi encontrado!");
 			txtNome.setText("");
 		}
 	}
@@ -83,26 +85,33 @@ public class TelaConsultaCliente {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 403);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmConsultaDeClientes = new JFrame();
+		frmConsultaDeClientes.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaCliente.class.getResource("/images/logo.jpg")));
+		frmConsultaDeClientes.setResizable(false);
+		frmConsultaDeClientes.setTitle("Consulta de clientes");
+		frmConsultaDeClientes.setBounds(100, 100, 450, 403);
+		frmConsultaDeClientes.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmConsultaDeClientes.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(57, 54, 70));
 		panel.setBounds(0, 0, 434, 364);
-		frame.getContentPane().add(panel);
+		frmConsultaDeClientes.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblTitle = new JLabel("Consultar Cliente");
-		lblTitle.setBounds(155, 11, 129, 14);
-		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel lblTitle = new JLabel("Consultar Clientes");
+		lblTitle.setForeground(new Color(244, 238, 224));
+		lblTitle.setBounds(155, 11, 170, 14);
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 16));
 		panel.add(lblTitle);
 		
 		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(new Color(244, 238, 224));
 		lblNome.setBounds(10, 46, 39, 14);
 		panel.add(lblNome);
 		
 		txtNome = new JTextField();
+		txtNome.setBackground(new Color(244, 238, 224));
 		txtNome.setBounds(10, 71, 414, 20);
 		panel.add(txtNome);
 		txtNome.setColumns(10);
@@ -121,6 +130,8 @@ public class TelaConsultaCliente {
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		table.setBackground(new Color(57, 54, 70));
+		table.setForeground(new Color(244, 238, 224));
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -133,6 +144,10 @@ public class TelaConsultaCliente {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(frmConsultaDeClientes, "Selecione a linha a ser alterada!");
+					return;
+				}
 				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
 				String nome = (String) table.getValueAt(table.getSelectedRow(), 1);
 				String cpf = (String) table.getValueAt(table.getSelectedRow(), 2);
@@ -156,9 +171,13 @@ public class TelaConsultaCliente {
 		JButton btnNewButton = new JButton("Excluir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(table.getSelectedRow() < 0) {
+					JOptionPane.showMessageDialog(frmConsultaDeClientes, "Selecione a linha a ser excluída!");
+					return;
+				}
 				Long id = (Long) table.getValueAt(table.getSelectedRow(), 0);
 				ClienteDAO dao = new ClienteDAO();
-				dao.delete(id, frame);
+				dao.delete(id, frmConsultaDeClientes);
 				atualizaBusca();
 			}
 		});

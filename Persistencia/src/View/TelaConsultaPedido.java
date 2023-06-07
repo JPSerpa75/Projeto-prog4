@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import DAO.PedidoDAO;
 import Dominio.Pedido;
+import java.awt.Toolkit;
 
 public class TelaConsultaPedido extends Frame {
 
@@ -112,6 +113,7 @@ public class TelaConsultaPedido extends Frame {
 	 */
 	private void initialize() {
 		FrmConsultaPedido = new JFrame();
+		FrmConsultaPedido.setIconImage(Toolkit.getDefaultToolkit().getImage(TelaConsultaPedido.class.getResource("/images/logo.jpg")));
 		FrmConsultaPedido.setTitle("Consultar pedidos");
 		FrmConsultaPedido.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		FrmConsultaPedido.setResizable(false);
